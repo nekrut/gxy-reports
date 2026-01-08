@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galaxy Project</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    /* ========================================
+       Apple-Style Design System
+       ======================================== */
+
+    :root {
+      /* Colors from usegalaxy.org */
+      --color-primary: #2c3143;
+      --color-accent: #FFD700;
+      --color-text-light: #f8f9fa;
+      --color-text-dark: #1d1d1f;
+      --color-bg-light: #ffffff;
+      --color-bg-subtle: #f5f5f7;
+      --color-border: rgba(0, 0, 0, 0.1);
+
+      /* Galaxy Paired colormap */
+      --color-orange: #fe7f02;
+      --color-orange-light: #fdbf6f;
+      --color-blue: #2077b3;
+      --color-blue-light: #a3cbdf;
+      --color-green: #74c376;
+      --color-green-light: #9fd99a;
+      --color-red: #e31a1e;
+      --color-red-light: #fb9998;
+      --color-yellow: #ffd602;
+
+      /* Typography */
+      --font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+      /* Transitions */
+      --transition-slide: 0.6s ease-out;
+      --transition-fast: 0.2s ease;
+
+      /* Spacing */
+      --spacing-xl: 80px;
+      --spacing-lg: 48px;
+      --spacing-md: 24px;
+      --spacing-sm: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: var(--color-bg-light);
+      color: var(--color-text-dark);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ========================================
+       Masthead Navigation
+       ======================================== */
+
+    .masthead {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 52px;
+      background: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-lg);
+      z-index: 1000;
+    }
+
+    .masthead-logo {
+      position: absolute;
+      left: var(--spacing-md);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--color-text-light);
+      letter-spacing: -0.5px;
+    }
+
+    .masthead-logo img {
+      height: 32px;
+      width: auto;
+    }
+
+    .masthead-nav {
+      display: flex;
+      gap: var(--spacing-lg);
+    }
+
+    .masthead-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .masthead-link:hover {
+      color: var(--color-accent);
+    }
+
+    .masthead-link.active {
+      color: var(--color-text-light);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ========================================
+       Slide Container
+       ======================================== */
+
+    .slides-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding-top: 52px;
+    }
+
+    .slide {
+      position: absolute;
+      top: 52px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition-slide), visibility var(--transition-slide);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-xl);
+      overflow: hidden;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* ========================================
+       Slide Layouts
+       ======================================== */
+
+    /* Stats Layout */
+    .slide-stats {
+      flex-direction: column;
+      text-align: center;
+      background: var(--color-bg-subtle);
+    }
+
+    .slide-stats .slide-title {
+      font-size: 56px;
+      font-weight: 600;
+      letter-spacing: -2px;
+      margin-bottom: var(--spacing-md);
+      color: var(--color-text-dark);
+    }
+
+    .slide-stats .slide-subtitle {
+      font-size: 21px;
+      font-weight: 400;
+      color: #86868b;
+      margin-bottom: var(--spacing-lg);
+      max-width: 700px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-md);
+      max-width: 900px;
+    }
+
+    .stats-grid.two-col {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 600px;
+    }
+
+    .stats-grid.four-col {
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1000px;
+    }
+
+    .stat-card {
+      background: var(--color-bg-light);
+      border-radius: 18px;
+      padding: var(--spacing-lg) var(--spacing-md);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      border-top: 5px solid var(--card-color, var(--color-primary));
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-card:nth-child(1) { --card-color: #fe7f02; }
+    .stat-card:nth-child(2) { --card-color: #2077b3; }
+    .stat-card:nth-child(3) { --card-color: #74c376; }
+    .stat-card:nth-child(4) { --card-color: #ffd602; }
+    .stat-card:nth-child(5) { --card-color: #e31a1e; }
+    .stat-card:nth-child(6) { --card-color: #2c3143; }
+
+    .stat-number {
+      font-size: 42px;
+      font-weight: 600;
+      letter-spacing: -2px;
+      color: var(--card-color, var(--color-primary));
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: #86868b;
+      font-weight: 500;
+    }
+
+    /* Split Layout */
+    .slide-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-xl);
+      max-width: 1400px;
+      width: 100%;
+    }
+
+    .slide-split.reverse {
+      direction: rtl;
+    }
+
+    .slide-split.reverse > * {
+      direction: ltr;
+    }
+
+    .slide-split .content-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 var(--spacing-md);
+    }
+
+    .slide-split .slide-title {
+      font-size: 44px;
+      font-weight: 600;
+      letter-spacing: -1.5px;
+      margin-bottom: var(--spacing-md);
+      color: var(--color-text-dark);
+    }
+
+    .slide-split .slide-text {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #1d1d1f;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .slide-split .slide-highlight {
+      font-size: 16px;
+      color: var(--color-primary);
+      font-weight: 500;
+      padding: var(--spacing-md);
+      background: var(--color-bg-subtle);
+      border-radius: 12px;
+      border-left: 4px solid var(--color-accent);
+    }
+
+    .slide-split .image-side {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-split .image-side img {
+      max-width: 100%;
+      max-height: 65vh;
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Center Layout */
+    .slide-center {
+      flex-direction: column;
+      text-align: center;
+      background: var(--color-bg-subtle);
+    }
+
+    .slide-center .slide-title {
+      font-size: 56px;
+      font-weight: 600;
+      letter-spacing: -2px;
+      margin-bottom: var(--spacing-md);
+      color: var(--color-text-dark);
+    }
+
+    .slide-center .slide-subtitle {
+      font-size: 21px;
+      font-weight: 400;
+      color: #86868b;
+      margin-bottom: var(--spacing-lg);
+      max-width: 700px;
+    }
+
+    .slide-center .center-image {
+      max-width: 90%;
+      max-height: 55vh;
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Ecosystem Card Layout */
+    .slide-ecosystem {
+      flex-direction: column;
+      text-align: center;
+      background: linear-gradient(135deg, var(--color-primary) 0%, #1a1f2e 100%);
+    }
+
+    .slide-ecosystem .slide-title {
+      font-size: 56px;
+      font-weight: 600;
+      letter-spacing: -2px;
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-text-light);
+    }
+
+    .slide-ecosystem .slide-subtitle {
+      font-size: 21px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: var(--spacing-lg);
+      max-width: 700px;
+    }
+
+    .ecosystem-stats {
+      display: flex;
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .ecosystem-stat {
+      text-align: center;
+    }
+
+    .ecosystem-stat-number {
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--color-accent);
+      letter-spacing: -2px;
+    }
+
+    .ecosystem-stat-label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .ecosystem-description {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .ecosystem-logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: var(--spacing-md);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+    }
+
+    /* Word Cloud Layout */
+    .slide-wordcloud {
+      background: linear-gradient(135deg, #1a1f2e 0%, var(--color-primary) 100%);
+      flex-direction: column;
+    }
+
+    .slide-wordcloud .slide-title {
+      font-size: 48px;
+      font-weight: 600;
+      letter-spacing: -2px;
+      margin-bottom: var(--spacing-lg);
+      color: var(--color-text-light);
+      z-index: 10;
+    }
+
+    #wordcloud-container {
+      width: 100%;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wordcloud-word {
+      position: absolute;
+      cursor: default;
+      transition: transform 0.3s ease, color 0.3s ease;
+      font-weight: 500;
+    }
+
+    .wordcloud-word:hover {
+      transform: scale(1.1);
+      color: var(--color-accent) !important;
+    }
+
+    /* Global Instances Grid */
+    .instances-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-md);
+      max-width: 1200px;
+    }
+
+    .instance-card {
+      background: var(--color-bg-light);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .instance-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    .instance-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .instance-card-content {
+      padding: var(--spacing-md);
+    }
+
+    .instance-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--color-text-dark);
+      margin-bottom: 4px;
+    }
+
+    .instance-card p {
+      font-size: 14px;
+      color: #86868b;
+    }
+
+    /* ========================================
+       Progress Bar
+       ======================================== */
+
+    .progress-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: rgba(0, 0, 0, 0.1);
+      z-index: 1001;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--color-accent);
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    /* ========================================
+       Controls
+       ======================================== */
+
+    .controls-hint {
+      position: fixed;
+      bottom: var(--spacing-md);
+      right: var(--spacing-md);
+      font-size: 12px;
+      color: #86868b;
+      background: var(--color-bg-light);
+      padding: 8px 16px;
+      border-radius: 20px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      opacity: 0.8;
+      transition: opacity var(--transition-fast);
+      z-index: 1001;
+    }
+
+    .controls-hint:hover {
+      opacity: 1;
+    }
+
+    .controls-hint kbd {
+      display: inline-block;
+      background: var(--color-bg-subtle);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: var(--font-family);
+      font-size: 11px;
+      margin: 0 2px;
+    }
+
+    .slide-dots {
+      position: fixed;
+      bottom: var(--spacing-md);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 1001;
+    }
+
+    .slide-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .slide-dot.active {
+      background: var(--color-primary);
+      transform: scale(1.25);
+    }
+
+    .slide-dot:hover {
+      background: var(--color-accent);
+    }
+
+    .pause-indicator {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 20px 40px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 500;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+      pointer-events: none;
+      z-index: 1002;
+    }
+
+    .pause-indicator.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* ========================================
+       Slide Counter
+       ======================================== */
+
+    .slide-counter {
+      position: fixed;
+      bottom: var(--spacing-md);
+      left: var(--spacing-md);
+      font-size: 12px;
+      color: #86868b;
+      background: var(--color-bg-light);
+      padding: 8px 16px;
+      border-radius: 20px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      z-index: 1001;
+    }
+  </style>
+</head>
+<body>
+  <!-- Masthead -->
+  <nav class="masthead">
+    <div class="masthead-logo">
+      <img src="favicon.svg" alt="Galaxy">
+    </div>
+    <div class="masthead-nav">
+      <a class="masthead-link active" data-section="global">Global Use</a>
+      <a class="masthead-link" data-section="capabilities">Capabilities</a>
+      <a class="masthead-link" data-section="ecosystem">Ecosystem</a>
+    </div>
+  </nav>
+
+  <!-- Slides -->
+  <div class="slides-container">
+
+    <!-- ==================== GLOBAL USE SECTION ==================== -->
+
+    <!-- Slide 1: Galaxy in Numbers -->
+    <section class="slide slide-stats active" data-section="global">
+      <h1 class="slide-title">Galaxy in Numbers</h1>
+      <p class="slide-subtitle">The most direct indication of community need is the extent of community adoption enjoyed by Galaxy.</p>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">750K</div>
+          <div class="stat-label">jobs per month</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">400K+</div>
+          <div class="stat-label">registered users</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1,500</div>
+          <div class="stat-label">concurrent users</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">$2M+</div>
+          <div class="stat-label">free compute / year</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">10K+</div>
+          <div class="stat-label">analysis tools</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">22K+</div>
+          <div class="stat-label">citations</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2: Steady Growth -->
+    <section class="slide" data-section="global">
+      <div class="slide-split">
+        <div class="content-side">
+          <h1 class="slide-title">Galaxy is Widely Used</h1>
+          <p class="slide-text">
+            In 2025, the main US Galaxy server sustained <strong>~1,500 concurrent users</strong>
+            running on average <strong>40,000 jobs</strong> within a 24-hour period.
+          </p>
+          <p class="slide-text">
+            We have reached over <strong>400,000 registered users</strong> in the United States,
+            and over <strong>600,000 worldwide</strong>.
+          </p>
+          <div class="slide-highlight">
+            More than 100,000 new users registered in the past year alone,
+            putting Galaxy on track to reach one million users by 2030.
+          </div>
+        </div>
+        <div class="image-side">
+          <img src="images/image2.png" alt="Galaxy Usage Growth">
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: Widely Cited -->
+    <section class="slide" data-section="global">
+      <div class="slide-split reverse">
+        <div class="content-side">
+          <h1 class="slide-title">Galaxy is Widely Cited</h1>
+          <p class="slide-text">
+            Galaxy is cited in <strong>>22,000 publications</strong> across
+            <strong>1,455 journals</strong> encompassing all domains of life sciences.
+          </p>
+          <p class="slide-text">
+            The Galaxy Platform is a leading example of scientific infrastructure,
+            with citations spanning genomics, proteomics, metabolomics, and beyond.
+          </p>
+          <div class="slide-highlight">
+            An additional 4,707 publications include links to Galaxy instances
+            without formal citations, showing even broader adoption.
+          </div>
+        </div>
+        <div class="image-side">
+          <img src="images/image5.png" alt="Galaxy Citations by Journal">
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: Highly Scalable -->
+    <section class="slide" data-section="global">
+      <div class="slide-split">
+        <div class="content-side">
+          <h1 class="slide-title">Galaxy is Highly Scalable</h1>
+          <p class="slide-text">
+            Galaxy provides an equivalent of <strong>>$2,000,000/year</strong> of free
+            computational infrastructure to all biomedical researchers in the US.
+          </p>
+          <p class="slide-text">
+            Powered by ACCESS-CI, Galaxy accesses resources at <strong>TACC, PSC, NCSA,
+            and SDSC</strong> to deliver unprecedented scale.
+          </p>
+          <div class="slide-highlight">
+            Every new Galaxy user automatically gets 250 GB of permanent storage
+            and 1 TB of scratch space with 8 concurrent job slots.
+          </div>
+        </div>
+        <div class="image-side">
+          <img src="images/image6.png" alt="ACCESS-CI Infrastructure">
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Tool Ecosystem -->
+    <section class="slide slide-stats" data-section="global">
+      <h1 class="slide-title">Galaxy is a Tool Ecosystem</h1>
+      <p class="slide-subtitle">Galaxy gives immediate access to thousands of tools for all major types of data analyses in life sciences.</p>
+      <div class="stats-grid four-col">
+        <div class="stat-card">
+          <div class="stat-number">11,699</div>
+          <div class="stat-label">BioConda packages</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">30,722</div>
+          <div class="stat-label">CondaForge packages</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">12,333</div>
+          <div class="stat-label">BioContainers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">10,676</div>
+          <div class="stat-label">Galaxy wrappers</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: Training Hub -->
+    <section class="slide" data-section="global">
+      <div class="slide-split reverse">
+        <div class="content-side">
+          <h1 class="slide-title">Galaxy is a Global Training Hub</h1>
+          <p class="slide-text">
+            The Galaxy Training Network (GTN) provides free, open, and peer-reviewed
+            training materials with <strong>489 tutorials</strong> across <strong>35 topics</strong>.
+          </p>
+          <p class="slide-text">
+            Galaxy powers the largest biological data analysis training events in the world,
+            with <strong>>3,700 simultaneous participants</strong> in Galaxy Training Academy 2025.
+          </p>
+          <div class="slide-highlight">
+            214 training videos and 499 contributors make GTN the most comprehensive
+            bioinformatics training resource available.
+          </div>
+        </div>
+        <div class="image-side">
+          <img src="images/image13.png" alt="Galaxy Training Academy World Map">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CAPABILITIES SECTION ==================== -->
+
+    <!-- Slide 7: Universe of Applications (Word Cloud) -->
+    <section class="slide slide-wordcloud" data-section="capabilities">
+      <h1 class="slide-title">A Universe of Applications</h1>
+      <div id="wordcloud-container"></div>
+    </section>
+
+    <!-- Slide 8: VGP -->
+    <section class="slide" data-section="capabilities">
+      <div class="slide-split">
+        <div class="content-side">
+          <h1 class="slide-title">Scalable Genome Assembly</h1>
+          <p class="slide-text">
+            The Vertebrate Genomes Project has produced near error-free, chromosome-level genomes for
+            <strong>600 species</strong> using Galaxy on Jetstream2.
+          </p>
+          <p class="slide-text">
+            VGP's ultimate goal: generating reproducible reference genomes for approximately
+            <strong>70,000</strong> known living vertebrate species.
+          </p>
+          <div class="slide-highlight">
+            "95% of the main discoveries that have driven biotechnology came from studying things
+            that were not model organisms at the time." — Giulio Formenti, Rockefeller University
+          </div>
+        </div>
+        <div class="image-side">
+          <img src="tree.png" alt="VGP Phylogenetic Tree">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ECOSYSTEM SECTION ==================== -->
+
+    <!-- Slide 9: Global Instances -->
+    <section class="slide slide-center" data-section="ecosystem">
+      <h1 class="slide-title">Global Galaxy Instances</h1>
+      <p class="slide-subtitle">The usegalaxy.* consortium provides free, public Galaxy servers across three continents.</p>
+      <div class="instances-grid">
+        <div class="instance-card">
+          <img src="https://galaxyproject.org/images/usegalaxy-logos/usegalaxy.org.png" alt="UseGalaxy.org" style="object-fit: contain; background: #f5f5f7; padding: 20px;">
+          <div class="instance-card-content">
+            <h3>usegalaxy.org</h3>
+            <p>Main US server at Penn State & TACC</p>
+          </div>
+        </div>
+        <div class="instance-card">
+          <img src="https://galaxyproject.org/images/usegalaxy-logos/usegalaxy.eu.png" alt="UseGalaxy.eu" style="object-fit: contain; background: #f5f5f7; padding: 20px;">
+          <div class="instance-card-content">
+            <h3>usegalaxy.eu</h3>
+            <p>European server at University of Freiburg</p>
+          </div>
+        </div>
+        <div class="instance-card">
+          <img src="https://galaxyproject.org/images/usegalaxy-logos/usegalaxy.org.au.png" alt="UseGalaxy.org.au" style="object-fit: contain; background: #f5f5f7; padding: 20px;">
+          <div class="instance-card-content">
+            <h3>usegalaxy.org.au</h3>
+            <p>Australian server at Melbourne Bioinformatics</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 10: IUC -->
+    <section class="slide slide-ecosystem" data-section="ecosystem">
+      <div class="ecosystem-logo">IUC</div>
+      <h1 class="slide-title">Intergalactic Utilities Commission</h1>
+      <p class="slide-subtitle">Community-driven tool curation ensuring quality and sustainability</p>
+      <div class="ecosystem-stats">
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">298+</div>
+          <div class="ecosystem-stat-label">Contributors</div>
+        </div>
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">493</div>
+          <div class="ecosystem-stat-label">Forks</div>
+        </div>
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">185</div>
+          <div class="ecosystem-stat-label">Stars</div>
+        </div>
+      </div>
+      <p class="ecosystem-description">
+        The IUC maintains Galaxy tool wrappers following best practices with automated testing
+        and deployment through CI/CD workflows.
+      </p>
+    </section>
+
+    <!-- Slide 11: IWC -->
+    <section class="slide slide-ecosystem" data-section="ecosystem">
+      <div class="ecosystem-logo">IWC</div>
+      <h1 class="slide-title">Intergalactic Workflow Commission</h1>
+      <p class="slide-subtitle">Curated, tested, and published Galaxy workflows</p>
+      <div class="ecosystem-stats">
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">153</div>
+          <div class="ecosystem-stat-label">Workflows</div>
+        </div>
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">3,651</div>
+          <div class="ecosystem-stat-label">Commits</div>
+        </div>
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">53</div>
+          <div class="ecosystem-stat-label">Contributors</div>
+        </div>
+      </div>
+      <p class="ecosystem-description">
+        High-quality workflows reviewed and published to Dockstore and WorkflowHub,
+        with automated testing across Galaxy releases.
+      </p>
+    </section>
+
+    <!-- Slide 12: BioContainers -->
+    <section class="slide slide-ecosystem" data-section="ecosystem">
+      <div class="ecosystem-logo">BC</div>
+      <h1 class="slide-title">BioContainers</h1>
+      <p class="slide-subtitle">Containerized bioinformatics tools for reproducibility</p>
+      <div class="ecosystem-stats">
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">12,333</div>
+          <div class="ecosystem-stat-label">Containers</div>
+        </div>
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">100%</div>
+          <div class="ecosystem-stat-label">Reproducible</div>
+        </div>
+      </div>
+      <p class="ecosystem-description">
+        Galaxy distributes Singularity BioContainers, ensuring reproducible tool execution
+        across any computing environment.
+      </p>
+    </section>
+
+    <!-- Slide 13: Planemo -->
+    <section class="slide slide-ecosystem" data-section="ecosystem">
+      <div class="ecosystem-logo">P</div>
+      <h1 class="slide-title">Planemo</h1>
+      <p class="slide-subtitle">Command-line toolkit for Galaxy development</p>
+      <div class="ecosystem-stats">
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">3,831</div>
+          <div class="ecosystem-stat-label">Commits</div>
+        </div>
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">60</div>
+          <div class="ecosystem-stat-label">Contributors</div>
+        </div>
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">95</div>
+          <div class="ecosystem-stat-label">Stars</div>
+        </div>
+      </div>
+      <p class="ecosystem-description">
+        Develop, lint, test, and publish Galaxy tools and workflows.
+        Execute workflows directly from command line against any Galaxy server.
+      </p>
+    </section>
+
+    <!-- Slide 14: Pulsar -->
+    <section class="slide slide-ecosystem" data-section="ecosystem">
+      <div class="ecosystem-logo">Pu</div>
+      <h1 class="slide-title">Pulsar</h1>
+      <p class="slide-subtitle">Distributed job execution for Galaxy</p>
+      <div class="ecosystem-stats">
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">28+</div>
+          <div class="ecosystem-stat-label">Contributors</div>
+        </div>
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">55</div>
+          <div class="ecosystem-stat-label">Forks</div>
+        </div>
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">40</div>
+          <div class="ecosystem-stat-label">Stars</div>
+        </div>
+      </div>
+      <p class="ecosystem-description">
+        Run Galaxy jobs on remote systems without shared filesystems.
+        Transfer inputs, execute jobs, and return results seamlessly.
+      </p>
+    </section>
+
+    <!-- Slide 15: TPV -->
+    <section class="slide slide-ecosystem" data-section="ecosystem">
+      <div class="ecosystem-logo">TPV</div>
+      <h1 class="slide-title">Total Perspective Vortex</h1>
+      <p class="slide-subtitle">Dynamic job routing for Galaxy</p>
+      <div class="ecosystem-stats">
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">597</div>
+          <div class="ecosystem-stat-label">Commits</div>
+        </div>
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">15</div>
+          <div class="ecosystem-stat-label">Contributors</div>
+        </div>
+        <div class="ecosystem-stat">
+          <div class="ecosystem-stat-number">14</div>
+          <div class="ecosystem-stat-label">Stars</div>
+        </div>
+      </div>
+      <p class="ecosystem-description">
+        Route tools, users, and roles to appropriate job destinations
+        using configurable YAML rules with a shared database of reusable configurations.
+      </p>
+    </section>
+
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
+
+  <!-- Slide Dots -->
+  <div class="slide-dots"></div>
+
+  <!-- Slide Counter -->
+  <div class="slide-counter">
+    <span class="current">1</span> / <span class="total">15</span>
+  </div>
+
+  <!-- Controls Hint -->
+  <div class="controls-hint">
+    <kbd>Space</kbd> pause &nbsp; <kbd>&larr;</kbd> <kbd>&rarr;</kbd> navigate
+  </div>
+
+  <!-- Pause Indicator -->
+  <div class="pause-indicator">Paused</div>
+
+  <script>
+    /* ========================================
+       Word Cloud Data
+       ======================================== */
+
+    const WORDCLOUD_TOPICS = [
+      { text: "Genomics", weight: 100 },
+      { text: "Transcriptomics", weight: 95 },
+      { text: "Proteomics", weight: 85 },
+      { text: "Metabolomics", weight: 80 },
+      { text: "Single Cell", weight: 90 },
+      { text: "Variant Analysis", weight: 88 },
+      { text: "Sequence Analysis", weight: 92 },
+      { text: "Genome Assembly", weight: 85 },
+      { text: "Epigenetics", weight: 75 },
+      { text: "Microbiome", weight: 82 },
+      { text: "Machine Learning", weight: 78 },
+      { text: "Imaging", weight: 70 },
+      { text: "Climate", weight: 65 },
+      { text: "Ecology", weight: 68 },
+      { text: "Evolution", weight: 72 },
+      { text: "SARS-CoV-2", weight: 60 },
+      { text: "FAIR Data", weight: 55 },
+      { text: "Visualisation", weight: 58 },
+      { text: "Computational Chemistry", weight: 50 },
+      { text: "Materials Science", weight: 45 },
+      { text: "One Health", weight: 52 },
+      { text: "Plants", weight: 62 },
+      { text: "Synthetic Biology", weight: 48 },
+      { text: "Digital Humanities", weight: 40 },
+      { text: "Data Science", weight: 75 },
+      { text: "Genome Annotation", weight: 78 },
+      { text: "RNA-seq", weight: 88 },
+      { text: "ChIP-seq", weight: 72 },
+      { text: "ATAC-seq", weight: 68 },
+      { text: "Metagenomics", weight: 80 }
+    ];
+
+    /* ========================================
+       Word Cloud Generator
+       ======================================== */
+
+    function generateWordCloud() {
+      const container = document.getElementById('wordcloud-container');
+      if (!container) return;
+
+      container.innerHTML = '';
+      const rect = container.getBoundingClientRect();
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const colors = ['#fe7f02', '#2077b3', '#74c376', '#ffd602', '#e31a1e', '#a3cbdf', '#fdbf6f', '#9fd99a', '#fb9998'];
+
+      // Place words in a spiral pattern
+      const placedWords = [];
+
+      WORDCLOUD_TOPICS.forEach((topic, index) => {
+        const word = document.createElement('span');
+        word.className = 'wordcloud-word';
+        word.textContent = topic.text;
+
+        // Size based on weight
+        const fontSize = 14 + (topic.weight / 100) * 32;
+        word.style.fontSize = `${fontSize}px`;
+        word.style.color = colors[index % colors.length];
+
+        // Spiral placement
+        const angle = index * 0.7;
+        const radius = 30 + index * 18;
+        const x = centerX + Math.cos(angle) * radius - 50;
+        const y = centerY + Math.sin(angle) * radius - 15;
+
+        word.style.left = `${x}px`;
+        word.style.top = `${y}px`;
+
+        container.appendChild(word);
+      });
+
+      // Add gentle floating animation
+      container.querySelectorAll('.wordcloud-word').forEach((word, i) => {
+        const duration = 3 + Math.random() * 2;
+        const delay = Math.random() * 2;
+        word.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+      });
+    }
+
+    // Add float animation keyframes
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+    `;
+    document.head.appendChild(style);
+
+    /* ========================================
+       Slideshow Controller
+       ======================================== */
+
+    const CONFIG = {
+      interval: 3000,
+      transitionDuration: 600,
+      loop: true
+    };
+
+    class Slideshow {
+      constructor() {
+        this.slides = document.querySelectorAll('.slide');
+        this.dotsContainer = document.querySelector('.slide-dots');
+        this.navLinks = document.querySelectorAll('.masthead-link');
+        this.progressBar = document.querySelector('.progress-bar');
+        this.pauseIndicator = document.querySelector('.pause-indicator');
+        this.counterCurrent = document.querySelector('.slide-counter .current');
+        this.counterTotal = document.querySelector('.slide-counter .total');
+
+        this.currentIndex = 0;
+        this.isPlaying = true;
+        this.progressInterval = null;
+        this.progress = 0;
+
+        this.init();
+      }
+
+      init() {
+        // Generate dots
+        this.slides.forEach((_, index) => {
+          const dot = document.createElement('div');
+          dot.className = `slide-dot${index === 0 ? ' active' : ''}`;
+          dot.dataset.slide = index;
+          dot.addEventListener('click', () => this.goToSlide(index));
+          this.dotsContainer.appendChild(dot);
+        });
+        this.dots = document.querySelectorAll('.slide-dot');
+
+        // Update counter
+        this.counterTotal.textContent = this.slides.length;
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => this.handleKeydown(e));
+
+        // Masthead navigation
+        this.navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            const section = link.dataset.section;
+            const slideIndex = [...this.slides].findIndex(
+              slide => slide.dataset.section === section
+            );
+            if (slideIndex !== -1) this.goToSlide(slideIndex);
+          });
+        });
+
+        // Generate word cloud when that slide becomes active
+        this.generateWordCloudOnce = false;
+
+        // Start autoplay
+        this.startAutoplay();
+      }
+
+      handleKeydown(e) {
+        switch (e.code) {
+          case 'Space':
+            e.preventDefault();
+            this.togglePlayPause();
+            break;
+          case 'ArrowRight':
+            this.next();
+            break;
+          case 'ArrowLeft':
+            this.prev();
+            break;
+          case 'Escape':
+            if (!this.isPlaying) this.play();
+            break;
+        }
+      }
+
+      goToSlide(index) {
+        if (index < 0 || index >= this.slides.length) return;
+
+        // Update slides
+        this.slides[this.currentIndex].classList.remove('active');
+        this.slides[index].classList.add('active');
+
+        // Update dots
+        this.dots[this.currentIndex].classList.remove('active');
+        this.dots[index].classList.add('active');
+
+        // Update masthead
+        const section = this.slides[index].dataset.section;
+        this.navLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.section === section);
+        });
+
+        // Update counter
+        this.counterCurrent.textContent = index + 1;
+
+        this.currentIndex = index;
+
+        // Generate word cloud if on that slide
+        if (this.slides[index].classList.contains('slide-wordcloud') && !this.generateWordCloudOnce) {
+          setTimeout(generateWordCloud, 100);
+          this.generateWordCloudOnce = true;
+        }
+
+        // Reset progress
+        this.resetProgress();
+      }
+
+      next() {
+        let nextIndex = this.currentIndex + 1;
+        if (nextIndex >= this.slides.length) {
+          nextIndex = CONFIG.loop ? 0 : this.slides.length - 1;
+        }
+        this.goToSlide(nextIndex);
+      }
+
+      prev() {
+        let prevIndex = this.currentIndex - 1;
+        if (prevIndex < 0) {
+          prevIndex = CONFIG.loop ? this.slides.length - 1 : 0;
+        }
+        this.goToSlide(prevIndex);
+      }
+
+      togglePlayPause() {
+        if (this.isPlaying) {
+          this.pause();
+        } else {
+          this.play();
+        }
+      }
+
+      play() {
+        this.isPlaying = true;
+        this.pauseIndicator.classList.remove('visible');
+        this.startAutoplay();
+      }
+
+      pause() {
+        this.isPlaying = false;
+        this.pauseIndicator.classList.add('visible');
+        this.stopAutoplay();
+
+        setTimeout(() => {
+          if (!this.isPlaying) {
+            this.pauseIndicator.classList.remove('visible');
+          }
+        }, 1000);
+      }
+
+      startAutoplay() {
+        this.stopAutoplay();
+
+        this.progress = 0;
+        this.progressBar.style.width = '0%';
+
+        this.progressInterval = setInterval(() => {
+          this.progress += 100 / (CONFIG.interval / 100);
+          this.progressBar.style.width = `${this.progress}%`;
+
+          if (this.progress >= 100) {
+            this.next();
+          }
+        }, 100);
+      }
+
+      stopAutoplay() {
+        clearInterval(this.progressInterval);
+      }
+
+      resetProgress() {
+        this.progress = 0;
+        this.progressBar.style.width = '0%';
+
+        if (this.isPlaying) {
+          this.startAutoplay();
+        }
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      new Slideshow();
+    });
+  </script>
+</body>
+</html>
