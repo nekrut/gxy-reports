@@ -1,6 +1,6 @@
 # Galaxy Promo Site
 
-A promotional slideshow website for Galaxy Project conference booth displays. Features 14 auto-playing slides showcasing Galaxy's global impact, capabilities, and ecosystem.
+A promotional slideshow website for Galaxy Project conference booth displays. Features 9 auto-playing slides showcasing Galaxy's global impact, capabilities, and ecosystem.
 
 ## Quick Start
 
@@ -15,7 +15,7 @@ python -m http.server 8000
 
 ## Features
 
-- **14 slides** across 3 sections: Global Use, Capabilities, Ecosystem
+- **9 slides** across 3 sections: Global Use, Capabilities, Ecosystem
 - **Auto-play** with configurable per-slide durations and progress bar
 - **Keyboard controls**: Space (pause/play), Arrow keys (navigate), Escape (resume)
 - **Click navigation**: Dots, masthead links
@@ -53,16 +53,11 @@ You can also click:
 | 6 | Universe of Applications | Animated word cloud of GTN topics |
 | 7 | Scalable Genome Assembly | VGP project, phylogenetic tree |
 
-### Ecosystem (Slides 8-14)
+### Ecosystem (Slides 8-9)
 | Slide | Title | Content |
 |-------|-------|---------|
 | 8 | Global Instances | usegalaxy.org, .eu, .org.au (galaxies.svg background) |
-| 9 | IUC | Intergalactic Utilities Commission |
-| 10 | IWC | Intergalactic Workflow Commission |
-| 11 | BioContainers | Container ecosystem |
-| 12 | Planemo | Developer toolkit |
-| 13 | Pulsar | Distributed job execution |
-| 14 | TPV | Total Perspective Vortex routing |
+| 9 | Galaxy Ecosystem | 6-panel grid: IUC, IWC, BioContainers, Planemo, Pulsar, TPV |
 
 ## File Structure
 

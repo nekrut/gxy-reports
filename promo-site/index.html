@@ -399,6 +399,51 @@
       object-fit: contain;
     }
 
+    /* Ecosystem Grid Layout */
+    .ecosystem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-md);
+      max-width: 1100px;
+    }
+
+    .ecosystem-panel {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: var(--spacing-md);
+      text-align: center;
+      transition: transform var(--transition-fast), background var(--transition-fast);
+    }
+
+    .ecosystem-panel:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .ecosystem-panel .panel-logo {
+      height: 60px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .ecosystem-panel .panel-logo img {
+      max-height: 60px;
+      max-width: 150px;
+      object-fit: contain;
+    }
+
+    .ecosystem-panel .panel-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--color-text-light);
+      margin-bottom: 8px;
+    }
+
+    .ecosystem-panel .panel-description {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.4;
+    }
+
     /* Word Cloud Layout */
     .slide-wordcloud {
       background: linear-gradient(135deg, #1a1f2e 0%, var(--color-primary) 100%);
@@ -446,30 +491,13 @@
     .slide-galaxies {
       background-color: var(--color-primary);
       background-image: url('galaxies.svg');
-      background-size: cover;
+      background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      position: relative;
-    }
-
-    .slide-galaxies::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 1;
-    }
-
-    .slide-galaxies > * {
-      position: relative;
-      z-index: 2;
     }
 
     .slide-galaxies .slide-title {
@@ -478,28 +506,27 @@
       letter-spacing: -2px;
       margin-bottom: var(--spacing-md);
       color: var(--color-text-light);
-      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
     }
 
     .slide-galaxies .slide-subtitle {
       font-size: 21px;
       font-weight: 400;
-      color: rgba(255, 255, 255, 0.9);
+      color: var(--color-text-light);
       margin-bottom: var(--spacing-lg);
       max-width: 800px;
-      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
     }
 
     .slide-galaxies .galaxies-description {
       font-size: 18px;
       line-height: 1.7;
-      color: rgba(255, 255, 255, 0.9);
+      color: var(--color-text-light);
       max-width: 700px;
       text-align: center;
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(44, 49, 67, 0.5);
       padding: var(--spacing-lg);
       border-radius: 16px;
-      backdrop-filter: blur(10px);
     }
 
     /* ========================================
@@ -818,150 +845,42 @@
       </div>
     </section>
 
-    <!-- Slide 9: IUC -->
+    <!-- Slide 9: Galaxy Ecosystem -->
     <section class="slide slide-ecosystem" data-section="ecosystem">
-      <div class="ecosystem-logo"><img src="images/iuc-logo.png" alt="IUC Logo"></div>
-      <h1 class="slide-title">Intergalactic Utilities Commission</h1>
-      <p class="slide-subtitle">Community-driven tool curation ensuring quality and sustainability</p>
-      <div class="ecosystem-stats">
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">298+</div>
-          <div class="ecosystem-stat-label">Contributors</div>
+      <h1 class="slide-title">Galaxy Ecosystem</h1>
+      <p class="slide-subtitle">Tools and services powering the Galaxy platform</p>
+      <div class="ecosystem-grid">
+        <div class="ecosystem-panel">
+          <div class="panel-logo"><img src="images/iuc-logo.png" alt="IUC"></div>
+          <div class="panel-title">IUC</div>
+          <div class="panel-description">Community-driven tool curation and best practices</div>
         </div>
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">493</div>
-          <div class="ecosystem-stat-label">Forks</div>
+        <div class="ecosystem-panel">
+          <div class="panel-logo"><img src="images/iwc-logo.png" alt="IWC"></div>
+          <div class="panel-title">IWC</div>
+          <div class="panel-description">Curated, tested, and published workflows</div>
         </div>
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">185</div>
-          <div class="ecosystem-stat-label">Stars</div>
+        <div class="ecosystem-panel">
+          <div class="panel-logo"><img src="images/biocontainers-logo.png" alt="BioContainers"></div>
+          <div class="panel-title">BioContainers</div>
+          <div class="panel-description">Containerized tools for reproducibility</div>
+        </div>
+        <div class="ecosystem-panel">
+          <div class="panel-logo"><img src="images/planemo-logo.png" alt="Planemo"></div>
+          <div class="panel-title">Planemo</div>
+          <div class="panel-description">Command-line developer toolkit</div>
+        </div>
+        <div class="ecosystem-panel">
+          <div class="panel-logo"><img src="images/pulsar-logo.png" alt="Pulsar"></div>
+          <div class="panel-title">Pulsar</div>
+          <div class="panel-description">Distributed job execution engine</div>
+        </div>
+        <div class="ecosystem-panel">
+          <div class="panel-logo"><img src="images/tpv-logo.png" alt="TPV"></div>
+          <div class="panel-title">TPV</div>
+          <div class="panel-description">Dynamic job routing system</div>
         </div>
       </div>
-      <p class="ecosystem-description">
-        The IUC maintains Galaxy tool wrappers following best practices with automated testing
-        and deployment through CI/CD workflows.
-      </p>
-    </section>
-
-    <!-- Slide 10: IWC -->
-    <section class="slide slide-ecosystem" data-section="ecosystem">
-      <div class="ecosystem-logo"><img src="images/iwc-logo.png" alt="IWC Logo"></div>
-      <h1 class="slide-title">Intergalactic Workflow Commission</h1>
-      <p class="slide-subtitle">Curated, tested, and published Galaxy workflows</p>
-      <div class="ecosystem-stats">
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">153</div>
-          <div class="ecosystem-stat-label">Workflows</div>
-        </div>
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">3,651</div>
-          <div class="ecosystem-stat-label">Commits</div>
-        </div>
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">53</div>
-          <div class="ecosystem-stat-label">Contributors</div>
-        </div>
-      </div>
-      <p class="ecosystem-description">
-        High-quality workflows reviewed and published to Dockstore and WorkflowHub,
-        with automated testing across Galaxy releases.
-      </p>
-    </section>
-
-    <!-- Slide 11: BioContainers -->
-    <section class="slide slide-ecosystem" data-section="ecosystem">
-      <div class="ecosystem-logo"><img src="images/biocontainers-logo.png" alt="BioContainers Logo"></div>
-      <h1 class="slide-title">BioContainers</h1>
-      <p class="slide-subtitle">Containerized bioinformatics tools for reproducibility</p>
-      <div class="ecosystem-stats">
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">12,333</div>
-          <div class="ecosystem-stat-label">Containers</div>
-        </div>
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">100%</div>
-          <div class="ecosystem-stat-label">Reproducible</div>
-        </div>
-      </div>
-      <p class="ecosystem-description">
-        Galaxy distributes Singularity BioContainers, ensuring reproducible tool execution
-        across any computing environment.
-      </p>
-    </section>
-
-    <!-- Slide 12: Planemo -->
-    <section class="slide slide-ecosystem" data-section="ecosystem">
-      <div class="ecosystem-logo"><img src="images/planemo-logo.png" alt="Planemo Logo"></div>
-      <h1 class="slide-title">Planemo</h1>
-      <p class="slide-subtitle">Command-line toolkit for Galaxy development</p>
-      <div class="ecosystem-stats">
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">3,831</div>
-          <div class="ecosystem-stat-label">Commits</div>
-        </div>
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">60</div>
-          <div class="ecosystem-stat-label">Contributors</div>
-        </div>
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">95</div>
-          <div class="ecosystem-stat-label">Stars</div>
-        </div>
-      </div>
-      <p class="ecosystem-description">
-        Develop, lint, test, and publish Galaxy tools and workflows.
-        Execute workflows directly from command line against any Galaxy server.
-      </p>
-    </section>
-
-    <!-- Slide 13: Pulsar -->
-    <section class="slide slide-ecosystem" data-section="ecosystem">
-      <div class="ecosystem-logo"><img src="images/pulsar-logo.png" alt="Pulsar Logo"></div>
-      <h1 class="slide-title">Pulsar</h1>
-      <p class="slide-subtitle">Distributed job execution for Galaxy</p>
-      <div class="ecosystem-stats">
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">28+</div>
-          <div class="ecosystem-stat-label">Contributors</div>
-        </div>
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">55</div>
-          <div class="ecosystem-stat-label">Forks</div>
-        </div>
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">40</div>
-          <div class="ecosystem-stat-label">Stars</div>
-        </div>
-      </div>
-      <p class="ecosystem-description">
-        Run Galaxy jobs on remote systems without shared filesystems.
-        Transfer inputs, execute jobs, and return results seamlessly.
-      </p>
-    </section>
-
-    <!-- Slide 14: TPV -->
-    <section class="slide slide-ecosystem" data-section="ecosystem">
-      <div class="ecosystem-logo"><img src="images/tpv-logo.png" alt="TPV Logo"></div>
-      <h1 class="slide-title">Total Perspective Vortex</h1>
-      <p class="slide-subtitle">Dynamic job routing for Galaxy</p>
-      <div class="ecosystem-stats">
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">597</div>
-          <div class="ecosystem-stat-label">Commits</div>
-        </div>
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">15</div>
-          <div class="ecosystem-stat-label">Contributors</div>
-        </div>
-        <div class="ecosystem-stat">
-          <div class="ecosystem-stat-number">14</div>
-          <div class="ecosystem-stat-label">Stars</div>
-        </div>
-      </div>
-      <p class="ecosystem-description">
-        Route tools, users, and roles to appropriate job destinations
-        using configurable YAML rules with a shared database of reusable configurations.
-      </p>
     </section>
 
   </div>
@@ -976,7 +895,7 @@
 
   <!-- Slide Counter -->
   <div class="slide-counter">
-    <span class="current">1</span> / <span class="total">14</span>
+    <span class="current">1</span> / <span class="total">9</span>
   </div>
 
   <!-- Controls Hint -->
