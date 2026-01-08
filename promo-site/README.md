@@ -19,7 +19,7 @@ python -m http.server 8000
 - **Auto-play** with configurable per-slide durations and progress bar
 - **Keyboard controls**: Space (pause/play), Arrow keys (navigate), Escape (resume)
 - **Click navigation**: Dots, masthead links
-- **Animated word cloud** with clickable links to GTN topics
+- **Sparkly topic grid** with clickable links to GTN topics
 - **Apple-inspired design** with Galaxy color scheme
 - **Offline-ready**: All assets stored locally
 
@@ -50,7 +50,7 @@ You can also click:
 ### Capabilities (Slides 6-7)
 | Slide | Title | Content |
 |-------|-------|---------|
-| 6 | Universe of Applications | Animated word cloud of GTN topics |
+| 6 | Universe of Applications | Sparkly grid of GTN topics |
 | 7 | Scalable Genome Assembly | VGP project, phylogenetic tree |
 
 ### Ecosystem (Slides 8-9)

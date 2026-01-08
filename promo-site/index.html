@@ -63,6 +63,11 @@
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      transition: background 0.6s ease;
+    }
+
+    body.wordcloud-active {
+      background: linear-gradient(135deg, #1a1f2e 0%, var(--color-primary) 100%);
     }
 
     /* ========================================
@@ -448,43 +453,62 @@
     .slide-wordcloud {
       background: linear-gradient(135deg, #1a1f2e 0%, var(--color-primary) 100%);
       flex-direction: column;
-      position: relative;
+      padding: 30px 50px;
     }
 
     .slide-wordcloud .slide-title {
-      font-size: 48px;
+      font-size: 38px;
       font-weight: 600;
       letter-spacing: -2px;
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: 16px;
       color: var(--color-text-light);
       z-index: 10;
       position: relative;
       background: linear-gradient(135deg, #1a1f2e 0%, var(--color-primary) 100%);
-      padding: var(--spacing-md) var(--spacing-xl);
+      padding: 8px 24px;
       border-radius: 12px;
     }
 
     #wordcloud-container {
-      width: 100%;
-      height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 18px;
+      max-width: 1400px;
+      width: 95%;
     }
 
     .wordcloud-word {
-      position: absolute;
+      padding: 18px 16px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
       cursor: pointer;
-      transition: transform 0.3s ease, color 0.3s ease;
+      transition: transform 0.2s ease, background 0.3s ease;
       font-weight: 500;
       font-family: var(--font-family);
       text-decoration: none;
+      text-align: center;
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.9);
     }
 
     .wordcloud-word:hover {
-      transform: scale(1.15);
-      color: var(--color-accent) !important;
+      transform: scale(1.08);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .wordcloud-word.sparkle {
+      animation: sparkle 0.5s ease-in-out;
+    }
+
+    @keyframes sparkle {
+      0%, 100% {
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: none;
+      }
+      50% {
+        background: var(--sparkle-color, rgba(255, 215, 0, 0.4));
+        box-shadow: 0 0 20px var(--sparkle-color, rgba(255, 215, 0, 0.5));
+      }
     }
 
     /* Global Instances - Background Image Layout */
@@ -952,13 +976,19 @@
       if (!container) return;
 
       container.innerHTML = '';
-      const rect = container.getBoundingClientRect();
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
 
-      const colors = ['#fe7f02', '#2077b3', '#74c376', '#ffd602', '#e31a1e', '#a3cbdf', '#fdbf6f', '#9fd99a', '#fb9998'];
+      // Galaxy colors for sparkle effect
+      const sparkleColors = [
+        'rgba(254, 127, 2, 0.5)',   // orange
+        'rgba(32, 119, 179, 0.5)',  // blue
+        'rgba(116, 195, 118, 0.5)', // green
+        'rgba(255, 214, 2, 0.5)',   // yellow
+        'rgba(227, 26, 30, 0.5)',   // red
+        'rgba(163, 203, 223, 0.5)', // light blue
+        'rgba(253, 191, 111, 0.5)'  // light orange
+      ];
 
-      // Place words in a spiral pattern
+      // Create grid of words
       WORDCLOUD_TOPICS.forEach((topic, index) => {
         const word = document.createElement('a');
         word.className = 'wordcloud-word';
@@ -967,32 +997,38 @@
         word.target = '_blank';
         word.rel = 'noopener noreferrer';
 
-        // Size based on weight - increased by 50%
-        const fontSize = 21 + (topic.weight / 100) * 48;
-        word.style.fontSize = `${fontSize}px`;
-        word.style.color = colors[index % colors.length];
-
-        // Spiral placement with more spacing
-        const angle = index * 0.7;
-        const radius = 40 + index * 22;
-        const x = centerX + Math.cos(angle) * radius - 60;
-        const y = centerY + Math.sin(angle) * radius - 20;
-
-        word.style.left = `${x}px`;
-        word.style.top = `${y}px`;
-
         container.appendChild(word);
       });
 
-      // Add gentle floating animation
-      container.querySelectorAll('.wordcloud-word').forEach((word, i) => {
-        const duration = 3 + Math.random() * 2;
-        const delay = Math.random() * 2;
-        word.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
-      });
+      // Add sparkle animation to random cells
+      const words = container.querySelectorAll('.wordcloud-word');
+
+      function addSparkle() {
+        // Remove existing sparkles
+        words.forEach(w => w.classList.remove('sparkle'));
+
+        // Pick 4-6 random words to sparkle
+        const numSparkles = 4 + Math.floor(Math.random() * 3);
+        const indices = new Set();
+        while (indices.size < numSparkles) {
+          indices.add(Math.floor(Math.random() * words.length));
+        }
+
+        indices.forEach(i => {
+          const color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+          words[i].style.setProperty('--sparkle-color', color);
+          words[i].classList.add('sparkle');
+        });
+      }
+
+      // Initial sparkle
+      addSparkle();
+
+      // Rotate sparkles every 0.5 seconds
+      setInterval(addSparkle, 500);
     }
 
-    // Add float animation keyframes
+    // Add float animation keyframes (kept for compatibility)
     const style = document.createElement('style');
     style.textContent = `
       @keyframes float {
@@ -1089,6 +1125,13 @@
         // Update slides
         this.slides[this.currentIndex].classList.remove('active');
         this.slides[index].classList.add('active');
+
+        // Update body background for wordcloud slide
+        if (this.slides[index].classList.contains('slide-wordcloud')) {
+          document.body.classList.add('wordcloud-active');
+        } else {
+          document.body.classList.remove('wordcloud-active');
+        }
 
         // Update dots
         this.dots[this.currentIndex].classList.remove('active');
