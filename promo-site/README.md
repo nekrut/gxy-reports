@@ -1,6 +1,6 @@
 # Galaxy Promo Site
 
-A promotional slideshow website for Galaxy Project conference booth displays. Features 9 auto-playing slides showcasing Galaxy's global impact, capabilities, and ecosystem.
+A promotional slideshow website for Galaxy Project conference booth displays. Features 8 auto-playing slides showcasing Galaxy's global impact, capabilities, and ecosystem.
 
 ## Quick Start
 
@@ -15,7 +15,7 @@ python -m http.server 8000
 
 ## Features
 
-- **9 slides** across 3 sections: Global Use, Capabilities, Ecosystem
+- **8 slides** across 3 sections: Global Use, Capabilities, Ecosystem
 - **Auto-play** with configurable per-slide durations and progress bar
 - **Keyboard controls**: Space (pause/play), Arrow keys (navigate), Escape (resume)
 - **Click navigation**: Dots, masthead links
@@ -38,26 +38,25 @@ You can also click:
 
 ## Slide Overview
 
-### Global Use (Slides 1-5)
+### Global Use (Slides 1-4)
 | Slide | Title | Content |
 |-------|-------|---------|
 | 1 | Galaxy in Numbers | Key stats: 750K jobs/mo, 400K users, $2M compute |
-| 2 | Widely Cited | 22K+ citations across 1,455 journals |
-| 3 | Highly Scalable | ACCESS-CI infrastructure map |
-| 4 | Tool Ecosystem | BioConda, BioContainers, Galaxy wrappers |
-| 5 | Training Hub | GTN stats, GTA 2025 world map |
+| 2 | Highly Scalable | ACCESS-CI infrastructure map |
+| 3 | Tool Ecosystem | BioConda, BioContainers, Galaxy wrappers |
+| 4 | Training Hub | GTN stats, GTA 2025 world map |
 
-### Capabilities (Slides 6-7)
+### Capabilities (Slides 5-6)
 | Slide | Title | Content |
 |-------|-------|---------|
-| 6 | Universe of Applications | Sparkly grid of GTN topics |
-| 7 | Scalable Genome Assembly | VGP project, phylogenetic tree |
+| 5 | Universe of Applications | Sparkly grid of GTN topics |
+| 6 | Scalable Genome Assembly | VGP project, phylogenetic tree |
 
-### Ecosystem (Slides 8-9)
+### Ecosystem (Slides 7-8)
 | Slide | Title | Content |
 |-------|-------|---------|
-| 8 | Global Instances | usegalaxy.org, .eu, .org.au (galaxies.svg background) |
-| 9 | Galaxy Ecosystem | 6-panel grid: IUC, IWC, BioContainers, Planemo, Pulsar, TPV |
+| 7 | Global Instances | usegalaxy.org, .eu, .org.au (galaxies.svg background) |
+| 8 | Galaxy Ecosystem | 6-panel grid: IUC, IWC, BioContainers, Planemo, Pulsar, TPV |
 
 ## File Structure
 
