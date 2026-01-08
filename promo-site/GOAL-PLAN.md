@@ -1,4 +1,4 @@
-# Galaxy promo site: putpose and structure
+# Galaxy promo site: purpose and structure
 
 ## Purpose
 
@@ -77,6 +77,71 @@ Create a page using a context from https://github.com/galaxyproject/pulsar
 #### Page 15: TPV
 
 Create a page using a context from https://github.com/galaxyproject/total-perspective-vortex 
+
+## Iteration 2
+
+Make the following changes:
+
+### Slide 1
+
+- Make numbers 33% larger
+- Use full numbers (e.g,, 2,000,000+ instead of 2M+)
+- Change "The most direct indication of community need is the extent of community adoption enjoyed by Galaxy." to "Serving biological researchers worldwide since 2005"
+
+### Slide 2
+
+Skip (remove)
+
+### Slide 4
+
+Use hi-res version of the image from access-map.svg
+
+### Slide 5
+
+Replace "Galaxy gives immediate access to thousands of tools for all major types of data analyses in life sciences." with "Galaxy serves thousands of open source analysis tools and is tightly integrated with BioConda and BioContainer communities"
+
+### Slide 6
+
+Use the following hires image instead: map_number.svg
+
+### Slide 7
+
+Make words from word cloud bigger and make sure they do not obscure the title "A Universe of Applications". Maybe you need to put title in a box with the same color as the background and make work cloud items "pass" underneath it. For word cloud use the same font as the fonts in the site. Can  you make words clickable and poiint to corresponding GTN items?
+
+### Slide 9
+
+Instead of the three boxes use galaxies.svg as a background for this entire page
+
+### Slide 10
+
+use logo from https://galaxyproject.org/images/galaxy-logos/iuc-logo-trans.png Copy it locally
+
+### Slide 11
+
+use logo from https://github.com/galaxyproject/iwc/blob/main/website/public/iwc_logo.png Copy it locally
+
+### Slide 12
+
+use logo from https://biocontainers.pro/static/logo/biocontainers-logo.png Copy it locally
+
+### Slide 13
+
+use logo from https://raw.githubusercontent.com/jmchilton/planemo/master/docs/planemo_logo.png Copy it locally
+
+### Slide 14
+
+use logo from https://camo.githubusercontent.com/ee3c208d518f7f80d3518c1d28a81ef71c5424c2880d816fb173e7682126b23c/68747470733a2f2f67616c61787970726f6a6563742e6f72672f696d616765732f67616c6178792d6c6f676f732f70756c7361725f7472616e73706172656e742e706e67 Copy it locally
+
+### Slide 15
+
+use logo from https://raw.githubusercontent.com/galaxyproject/total-perspective-vortex/main/docs/images/tpv-logo-wide.png Copy it locally
+
+
+
+
+
+
+
 
 
 

@@ -1,6 +1,6 @@
 # Galaxy Promo Site
 
-A promotional slideshow website for Galaxy Project conference booth displays. Features 15 auto-playing slides showcasing Galaxy's global impact, capabilities, and ecosystem.
+A promotional slideshow website for Galaxy Project conference booth displays. Features 14 auto-playing slides showcasing Galaxy's global impact, capabilities, and ecosystem.
 
 ## Quick Start
 
@@ -15,13 +15,13 @@ python -m http.server 8000
 
 ## Features
 
-- **15 slides** across 3 sections: Global Use, Capabilities, Ecosystem
-- **Auto-play** with 3-second intervals and progress bar
+- **14 slides** across 3 sections: Global Use, Capabilities, Ecosystem
+- **Auto-play** with configurable per-slide durations and progress bar
 - **Keyboard controls**: Space (pause/play), Arrow keys (navigate), Escape (resume)
 - **Click navigation**: Dots, masthead links
-- **Animated word cloud** showing Galaxy's application domains
+- **Animated word cloud** with clickable links to GTN topics
 - **Apple-inspired design** with Galaxy color scheme
-- **Offline-ready**: Works without internet (except Slide 9 logos)
+- **Offline-ready**: All assets stored locally
 
 ## Controls
 
@@ -38,32 +38,31 @@ You can also click:
 
 ## Slide Overview
 
-### Global Use (Slides 1-6)
+### Global Use (Slides 1-5)
 | Slide | Title | Content |
 |-------|-------|---------|
 | 1 | Galaxy in Numbers | Key stats: 750K jobs/mo, 400K users, $2M compute |
-| 2 | Widely Used | User growth chart, 600K worldwide users |
-| 3 | Widely Cited | 22K+ citations across 1,455 journals |
-| 4 | Highly Scalable | ACCESS-CI infrastructure diagram |
-| 5 | Tool Ecosystem | BioConda, BioContainers, Galaxy wrappers |
-| 6 | Training Hub | GTN stats, GTA 2025 world map |
+| 2 | Widely Cited | 22K+ citations across 1,455 journals |
+| 3 | Highly Scalable | ACCESS-CI infrastructure map |
+| 4 | Tool Ecosystem | BioConda, BioContainers, Galaxy wrappers |
+| 5 | Training Hub | GTN stats, GTA 2025 world map |
 
-### Capabilities (Slides 7-8)
+### Capabilities (Slides 6-7)
 | Slide | Title | Content |
 |-------|-------|---------|
-| 7 | Universe of Applications | Animated word cloud of GTN topics |
-| 8 | Scalable Genome Assembly | VGP project, phylogenetic tree |
+| 6 | Universe of Applications | Animated word cloud of GTN topics |
+| 7 | Scalable Genome Assembly | VGP project, phylogenetic tree |
 
-### Ecosystem (Slides 9-15)
+### Ecosystem (Slides 8-14)
 | Slide | Title | Content |
 |-------|-------|---------|
-| 9 | Global Instances | usegalaxy.org, .eu, .org.au |
-| 10 | IUC | Intergalactic Utilities Commission |
-| 11 | IWC | Intergalactic Workflow Commission |
-| 12 | BioContainers | Container ecosystem |
-| 13 | Planemo | Developer toolkit |
-| 14 | Pulsar | Distributed job execution |
-| 15 | TPV | Total Perspective Vortex routing |
+| 8 | Global Instances | usegalaxy.org, .eu, .org.au (galaxies.svg background) |
+| 9 | IUC | Intergalactic Utilities Commission |
+| 10 | IWC | Intergalactic Workflow Commission |
+| 11 | BioContainers | Container ecosystem |
+| 12 | Planemo | Developer toolkit |
+| 13 | Pulsar | Distributed job execution |
+| 14 | TPV | Total Perspective Vortex routing |
 
 ## File Structure
 
@@ -71,12 +70,18 @@ You can also click:
 promo-site/
 ├── index.html          # Main site (single-file, self-contained)
 ├── favicon.svg         # Galaxy logo (from usegalaxy.org)
-├── tree.png            # VGP phylogenetic tree (2.5MB)
+├── tree.png            # VGP phylogenetic tree
+├── access-map.svg      # ACCESS-CI infrastructure map
+├── map_number.svg      # GTA 2025 world map
+├── galaxies.svg        # Global instances background
 ├── images/
-│   ├── image2.png      # User growth chart
 │   ├── image5.png      # Citations by journal
-│   ├── image6.png      # ACCESS-CI infrastructure
-│   └── image13.png     # GTA 2025 world map
+│   ├── iuc-logo.png    # IUC logo
+│   ├── iwc-logo.png    # IWC logo
+│   ├── biocontainers-logo.png
+│   ├── planemo-logo.png
+│   ├── pulsar-logo.png
+│   └── tpv-logo.png
 ├── gxy_colors.pdf      # Galaxy color palette reference
 ├── vgp.md              # VGP content source
 ├── GOAL-PLAN.md        # Original requirements
@@ -86,14 +91,28 @@ promo-site/
 
 ## Configuration
 
-Edit `CONFIG` in `index.html` to customize:
+### Global Settings
+
+Edit `CONFIG` in `index.html` to customize defaults:
 
 ```javascript
 const CONFIG = {
-  interval: 3000,        // Slide duration in ms (default: 3 seconds)
+  interval: 3000,        // Default slide duration in ms (3 seconds)
   transitionDuration: 600, // Fade transition in ms
   loop: true             // Loop back to start after last slide
 };
+```
+
+### Per-Slide Duration
+
+Each slide can have its own display duration using the `data-duration` attribute (in milliseconds):
+
+```html
+<!-- This slide displays for 5 seconds -->
+<section class="slide" data-section="global" data-duration="5000">
+
+<!-- This slide uses the default (3 seconds) -->
+<section class="slide" data-section="global">
 ```
 
 ## Color Palette
@@ -116,19 +135,6 @@ Uses official Galaxy colors from `gxy_colors.pdf`:
 - **Images**: Extracted from RS.md base64 data
 - **Word cloud topics**: Galaxy Training Network (training.galaxyproject.org)
 - **GitHub stats**: Fetched from respective repositories
-
-## Offline Usage
-
-The site works offline except for Slide 9 (Global Instances) which loads logos from galaxyproject.org. To make fully offline:
-
-1. Download the logos:
-```bash
-curl -o images/usegalaxy-org.png "https://galaxyproject.org/images/usegalaxy-logos/usegalaxy.org.png"
-curl -o images/usegalaxy-eu.png "https://galaxyproject.org/images/usegalaxy-logos/usegalaxy.eu.png"
-curl -o images/usegalaxy-org-au.png "https://galaxyproject.org/images/usegalaxy-logos/usegalaxy.org.au.png"
-```
-
-2. Update the `<img src="...">` paths in Slide 9 to use local files.
 
 ## Browser Support
 

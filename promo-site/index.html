@@ -223,7 +223,7 @@
     .stat-card:nth-child(6) { --card-color: #2c3143; }
 
     .stat-number {
-      font-size: 42px;
+      font-size: 56px;
       font-weight: 600;
       letter-spacing: -2px;
       color: var(--card-color, var(--color-primary));
@@ -384,21 +384,26 @@
     }
 
     .ecosystem-logo {
-      width: 80px;
-      height: 80px;
+      width: auto;
+      height: 100px;
+      max-width: 300px;
       margin-bottom: var(--spacing-md);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 36px;
+    }
+
+    .ecosystem-logo img {
+      max-height: 100px;
+      max-width: 300px;
+      object-fit: contain;
     }
 
     /* Word Cloud Layout */
     .slide-wordcloud {
       background: linear-gradient(135deg, #1a1f2e 0%, var(--color-primary) 100%);
       flex-direction: column;
+      position: relative;
     }
 
     .slide-wordcloud .slide-title {
@@ -408,6 +413,10 @@
       margin-bottom: var(--spacing-lg);
       color: var(--color-text-light);
       z-index: 10;
+      position: relative;
+      background: linear-gradient(135deg, #1a1f2e 0%, var(--color-primary) 100%);
+      padding: var(--spacing-md) var(--spacing-xl);
+      border-radius: 12px;
     }
 
     #wordcloud-container {
@@ -416,62 +425,81 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
 
     .wordcloud-word {
       position: absolute;
-      cursor: default;
+      cursor: pointer;
       transition: transform 0.3s ease, color 0.3s ease;
       font-weight: 500;
+      font-family: var(--font-family);
+      text-decoration: none;
     }
 
     .wordcloud-word:hover {
-      transform: scale(1.1);
+      transform: scale(1.15);
       color: var(--color-accent) !important;
     }
 
-    /* Global Instances Grid */
-    .instances-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--spacing-md);
-      max-width: 1200px;
+    /* Global Instances - Background Image Layout */
+    .slide-galaxies {
+      background-color: var(--color-primary);
+      background-image: url('galaxies.svg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
     }
 
-    .instance-card {
-      background: var(--color-bg-light);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    .slide-galaxies::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
     }
 
-    .instance-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    .slide-galaxies > * {
+      position: relative;
+      z-index: 2;
     }
 
-    .instance-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-bottom: 1px solid var(--color-border);
-    }
-
-    .instance-card-content {
-      padding: var(--spacing-md);
-    }
-
-    .instance-card h3 {
-      font-size: 18px;
+    .slide-galaxies .slide-title {
+      font-size: 56px;
       font-weight: 600;
-      color: var(--color-text-dark);
-      margin-bottom: 4px;
+      letter-spacing: -2px;
+      margin-bottom: var(--spacing-md);
+      color: var(--color-text-light);
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
     }
 
-    .instance-card p {
-      font-size: 14px;
-      color: #86868b;
+    .slide-galaxies .slide-subtitle {
+      font-size: 21px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: var(--spacing-lg);
+      max-width: 800px;
+      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .slide-galaxies .galaxies-description {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 700px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.3);
+      padding: var(--spacing-lg);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
     }
 
     /* ========================================
@@ -619,14 +647,14 @@
     <!-- Slide 1: Galaxy in Numbers -->
     <section class="slide slide-stats active" data-section="global">
       <h1 class="slide-title">Galaxy in Numbers</h1>
-      <p class="slide-subtitle">The most direct indication of community need is the extent of community adoption enjoyed by Galaxy.</p>
+      <p class="slide-subtitle">Serving biological researchers worldwide since 2005</p>
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-number">750K</div>
+          <div class="stat-number">750,000</div>
           <div class="stat-label">jobs per month</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">400K+</div>
+          <div class="stat-number">400,000+</div>
           <div class="stat-label">registered users</div>
         </div>
         <div class="stat-card">
@@ -634,45 +662,21 @@
           <div class="stat-label">concurrent users</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">$2M+</div>
+          <div class="stat-number">$2,000,000+</div>
           <div class="stat-label">free compute / year</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">10K+</div>
+          <div class="stat-number">10,000+</div>
           <div class="stat-label">analysis tools</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">22K+</div>
+          <div class="stat-number">22,000+</div>
           <div class="stat-label">citations</div>
         </div>
       </div>
     </section>
 
-    <!-- Slide 2: Steady Growth -->
-    <section class="slide" data-section="global">
-      <div class="slide-split">
-        <div class="content-side">
-          <h1 class="slide-title">Galaxy is Widely Used</h1>
-          <p class="slide-text">
-            In 2025, the main US Galaxy server sustained <strong>~1,500 concurrent users</strong>
-            running on average <strong>40,000 jobs</strong> within a 24-hour period.
-          </p>
-          <p class="slide-text">
-            We have reached over <strong>400,000 registered users</strong> in the United States,
-            and over <strong>600,000 worldwide</strong>.
-          </p>
-          <div class="slide-highlight">
-            More than 100,000 new users registered in the past year alone,
-            putting Galaxy on track to reach one million users by 2030.
-          </div>
-        </div>
-        <div class="image-side">
-          <img src="images/image2.png" alt="Galaxy Usage Growth">
-        </div>
-      </div>
-    </section>
-
-    <!-- Slide 3: Widely Cited -->
+    <!-- Slide 2: Galaxy is Widely Cited -->
     <section class="slide" data-section="global">
       <div class="slide-split reverse">
         <div class="content-side">
@@ -696,7 +700,7 @@
       </div>
     </section>
 
-    <!-- Slide 4: Highly Scalable -->
+    <!-- Slide 3: Galaxy is Highly Scalable -->
     <section class="slide" data-section="global">
       <div class="slide-split">
         <div class="content-side">
@@ -715,15 +719,15 @@
           </div>
         </div>
         <div class="image-side">
-          <img src="images/image6.png" alt="ACCESS-CI Infrastructure">
+          <img src="access-map.svg" alt="ACCESS-CI Infrastructure">
         </div>
       </div>
     </section>
 
-    <!-- Slide 5: Tool Ecosystem -->
+    <!-- Slide 4: Tool Ecosystem -->
     <section class="slide slide-stats" data-section="global">
       <h1 class="slide-title">Galaxy is a Tool Ecosystem</h1>
-      <p class="slide-subtitle">Galaxy gives immediate access to thousands of tools for all major types of data analyses in life sciences.</p>
+      <p class="slide-subtitle">Galaxy serves thousands of open source analysis tools and is tightly integrated with BioConda and BioContainer communities</p>
       <div class="stats-grid four-col">
         <div class="stat-card">
           <div class="stat-number">11,699</div>
@@ -744,7 +748,7 @@
       </div>
     </section>
 
-    <!-- Slide 6: Training Hub -->
+    <!-- Slide 5: Training Hub -->
     <section class="slide" data-section="global">
       <div class="slide-split reverse">
         <div class="content-side">
@@ -763,20 +767,20 @@
           </div>
         </div>
         <div class="image-side">
-          <img src="images/image13.png" alt="Galaxy Training Academy World Map">
+          <img src="map_number.svg" alt="Galaxy Training Academy World Map">
         </div>
       </div>
     </section>
 
     <!-- ==================== CAPABILITIES SECTION ==================== -->
 
-    <!-- Slide 7: Universe of Applications (Word Cloud) -->
+    <!-- Slide 6: Universe of Applications (Word Cloud) -->
     <section class="slide slide-wordcloud" data-section="capabilities">
       <h1 class="slide-title">A Universe of Applications</h1>
       <div id="wordcloud-container"></div>
     </section>
 
-    <!-- Slide 8: VGP -->
+    <!-- Slide 7: VGP -->
     <section class="slide" data-section="capabilities">
       <div class="slide-split">
         <div class="content-side">
@@ -802,38 +806,21 @@
 
     <!-- ==================== ECOSYSTEM SECTION ==================== -->
 
-    <!-- Slide 9: Global Instances -->
-    <section class="slide slide-center" data-section="ecosystem">
+    <!-- Slide 8: Global Instances -->
+    <section class="slide slide-galaxies" data-section="ecosystem">
       <h1 class="slide-title">Global Galaxy Instances</h1>
-      <p class="slide-subtitle">The usegalaxy.* consortium provides free, public Galaxy servers across three continents.</p>
-      <div class="instances-grid">
-        <div class="instance-card">
-          <img src="https://galaxyproject.org/images/usegalaxy-logos/usegalaxy.org.png" alt="UseGalaxy.org" style="object-fit: contain; background: #f5f5f7; padding: 20px;">
-          <div class="instance-card-content">
-            <h3>usegalaxy.org</h3>
-            <p>Main US server at Penn State & TACC</p>
-          </div>
-        </div>
-        <div class="instance-card">
-          <img src="https://galaxyproject.org/images/usegalaxy-logos/usegalaxy.eu.png" alt="UseGalaxy.eu" style="object-fit: contain; background: #f5f5f7; padding: 20px;">
-          <div class="instance-card-content">
-            <h3>usegalaxy.eu</h3>
-            <p>European server at University of Freiburg</p>
-          </div>
-        </div>
-        <div class="instance-card">
-          <img src="https://galaxyproject.org/images/usegalaxy-logos/usegalaxy.org.au.png" alt="UseGalaxy.org.au" style="object-fit: contain; background: #f5f5f7; padding: 20px;">
-          <div class="instance-card-content">
-            <h3>usegalaxy.org.au</h3>
-            <p>Australian server at Melbourne Bioinformatics</p>
-          </div>
-        </div>
+      <p class="slide-subtitle">The usegalaxy.* consortium provides free, public Galaxy servers across three continents</p>
+      <div class="galaxies-description">
+        <p><strong>usegalaxy.org</strong> (USA), <strong>usegalaxy.eu</strong> (Europe), and <strong>usegalaxy.org.au</strong> (Australia)
+        form a global network of free, open-access Galaxy servers. Together they provide researchers worldwide with
+        no-cost access to thousands of analysis tools, training resources, and petabytes of storage for reproducible
+        computational biology research.</p>
       </div>
     </section>
 
-    <!-- Slide 10: IUC -->
+    <!-- Slide 9: IUC -->
     <section class="slide slide-ecosystem" data-section="ecosystem">
-      <div class="ecosystem-logo">IUC</div>
+      <div class="ecosystem-logo"><img src="images/iuc-logo.png" alt="IUC Logo"></div>
       <h1 class="slide-title">Intergalactic Utilities Commission</h1>
       <p class="slide-subtitle">Community-driven tool curation ensuring quality and sustainability</p>
       <div class="ecosystem-stats">
@@ -856,9 +843,9 @@
       </p>
     </section>
 
-    <!-- Slide 11: IWC -->
+    <!-- Slide 10: IWC -->
     <section class="slide slide-ecosystem" data-section="ecosystem">
-      <div class="ecosystem-logo">IWC</div>
+      <div class="ecosystem-logo"><img src="images/iwc-logo.png" alt="IWC Logo"></div>
       <h1 class="slide-title">Intergalactic Workflow Commission</h1>
       <p class="slide-subtitle">Curated, tested, and published Galaxy workflows</p>
       <div class="ecosystem-stats">
@@ -881,9 +868,9 @@
       </p>
     </section>
 
-    <!-- Slide 12: BioContainers -->
+    <!-- Slide 11: BioContainers -->
     <section class="slide slide-ecosystem" data-section="ecosystem">
-      <div class="ecosystem-logo">BC</div>
+      <div class="ecosystem-logo"><img src="images/biocontainers-logo.png" alt="BioContainers Logo"></div>
       <h1 class="slide-title">BioContainers</h1>
       <p class="slide-subtitle">Containerized bioinformatics tools for reproducibility</p>
       <div class="ecosystem-stats">
@@ -902,9 +889,9 @@
       </p>
     </section>
 
-    <!-- Slide 13: Planemo -->
+    <!-- Slide 12: Planemo -->
     <section class="slide slide-ecosystem" data-section="ecosystem">
-      <div class="ecosystem-logo">P</div>
+      <div class="ecosystem-logo"><img src="images/planemo-logo.png" alt="Planemo Logo"></div>
       <h1 class="slide-title">Planemo</h1>
       <p class="slide-subtitle">Command-line toolkit for Galaxy development</p>
       <div class="ecosystem-stats">
@@ -927,9 +914,9 @@
       </p>
     </section>
 
-    <!-- Slide 14: Pulsar -->
+    <!-- Slide 13: Pulsar -->
     <section class="slide slide-ecosystem" data-section="ecosystem">
-      <div class="ecosystem-logo">Pu</div>
+      <div class="ecosystem-logo"><img src="images/pulsar-logo.png" alt="Pulsar Logo"></div>
       <h1 class="slide-title">Pulsar</h1>
       <p class="slide-subtitle">Distributed job execution for Galaxy</p>
       <div class="ecosystem-stats">
@@ -952,9 +939,9 @@
       </p>
     </section>
 
-    <!-- Slide 15: TPV -->
+    <!-- Slide 14: TPV -->
     <section class="slide slide-ecosystem" data-section="ecosystem">
-      <div class="ecosystem-logo">TPV</div>
+      <div class="ecosystem-logo"><img src="images/tpv-logo.png" alt="TPV Logo"></div>
       <h1 class="slide-title">Total Perspective Vortex</h1>
       <p class="slide-subtitle">Dynamic job routing for Galaxy</p>
       <div class="ecosystem-stats">
@@ -989,7 +976,7 @@
 
   <!-- Slide Counter -->
   <div class="slide-counter">
-    <span class="current">1</span> / <span class="total">15</span>
+    <span class="current">1</span> / <span class="total">14</span>
   </div>
 
   <!-- Controls Hint -->
@@ -1006,36 +993,35 @@
        ======================================== */
 
     const WORDCLOUD_TOPICS = [
-      { text: "Genomics", weight: 100 },
-      { text: "Transcriptomics", weight: 95 },
-      { text: "Proteomics", weight: 85 },
-      { text: "Metabolomics", weight: 80 },
-      { text: "Single Cell", weight: 90 },
-      { text: "Variant Analysis", weight: 88 },
-      { text: "Sequence Analysis", weight: 92 },
-      { text: "Genome Assembly", weight: 85 },
-      { text: "Epigenetics", weight: 75 },
-      { text: "Microbiome", weight: 82 },
-      { text: "Machine Learning", weight: 78 },
-      { text: "Imaging", weight: 70 },
-      { text: "Climate", weight: 65 },
-      { text: "Ecology", weight: 68 },
-      { text: "Evolution", weight: 72 },
-      { text: "SARS-CoV-2", weight: 60 },
-      { text: "FAIR Data", weight: 55 },
-      { text: "Visualisation", weight: 58 },
-      { text: "Computational Chemistry", weight: 50 },
-      { text: "Materials Science", weight: 45 },
-      { text: "One Health", weight: 52 },
-      { text: "Plants", weight: 62 },
-      { text: "Synthetic Biology", weight: 48 },
-      { text: "Digital Humanities", weight: 40 },
-      { text: "Data Science", weight: 75 },
-      { text: "Genome Annotation", weight: 78 },
-      { text: "RNA-seq", weight: 88 },
-      { text: "ChIP-seq", weight: 72 },
-      { text: "ATAC-seq", weight: 68 },
-      { text: "Metagenomics", weight: 80 }
+      { text: "Genomics", weight: 100, url: "https://training.galaxyproject.org/training-material/topics/genome-annotation/" },
+      { text: "Transcriptomics", weight: 95, url: "https://training.galaxyproject.org/training-material/topics/transcriptomics/" },
+      { text: "Proteomics", weight: 85, url: "https://training.galaxyproject.org/training-material/topics/proteomics/" },
+      { text: "Metabolomics", weight: 80, url: "https://training.galaxyproject.org/training-material/topics/metabolomics/" },
+      { text: "Single Cell", weight: 90, url: "https://training.galaxyproject.org/training-material/topics/single-cell/" },
+      { text: "Variant Analysis", weight: 88, url: "https://training.galaxyproject.org/training-material/topics/variant-analysis/" },
+      { text: "Sequence Analysis", weight: 92, url: "https://training.galaxyproject.org/training-material/topics/sequence-analysis/" },
+      { text: "Assembly", weight: 85, url: "https://training.galaxyproject.org/training-material/topics/assembly/" },
+      { text: "Epigenetics", weight: 75, url: "https://training.galaxyproject.org/training-material/topics/epigenetics/" },
+      { text: "Microbiome", weight: 82, url: "https://training.galaxyproject.org/training-material/topics/microbiome/" },
+      { text: "Machine Learning", weight: 78, url: "https://training.galaxyproject.org/training-material/topics/statistics/" },
+      { text: "Imaging", weight: 70, url: "https://training.galaxyproject.org/training-material/topics/imaging/" },
+      { text: "Climate", weight: 65, url: "https://training.galaxyproject.org/training-material/topics/climate/" },
+      { text: "Ecology", weight: 68, url: "https://training.galaxyproject.org/training-material/topics/ecology/" },
+      { text: "Evolution", weight: 72, url: "https://training.galaxyproject.org/training-material/topics/evolution/" },
+      { text: "SARS-CoV-2", weight: 60, url: "https://training.galaxyproject.org/training-material/topics/variant-analysis/" },
+      { text: "FAIR Data", weight: 55, url: "https://training.galaxyproject.org/training-material/topics/fair/" },
+      { text: "Visualisation", weight: 58, url: "https://training.galaxyproject.org/training-material/topics/visualisation/" },
+      { text: "Computational Chemistry", weight: 50, url: "https://training.galaxyproject.org/training-material/topics/computational-chemistry/" },
+      { text: "Materials Science", weight: 45, url: "https://training.galaxyproject.org/training-material/topics/materials-science/" },
+      { text: "One Health", weight: 52, url: "https://training.galaxyproject.org/training-material/topics/one-health/" },
+      { text: "Plants", weight: 62, url: "https://training.galaxyproject.org/training-material/topics/plants/" },
+      { text: "Synthetic Biology", weight: 48, url: "https://training.galaxyproject.org/training-material/topics/synthetic-biology/" },
+      { text: "Data Science", weight: 75, url: "https://training.galaxyproject.org/training-material/topics/data-science/" },
+      { text: "Annotation", weight: 78, url: "https://training.galaxyproject.org/training-material/topics/genome-annotation/" },
+      { text: "RNA-seq", weight: 88, url: "https://training.galaxyproject.org/training-material/topics/transcriptomics/" },
+      { text: "ChIP-seq", weight: 72, url: "https://training.galaxyproject.org/training-material/topics/epigenetics/" },
+      { text: "ATAC-seq", weight: 68, url: "https://training.galaxyproject.org/training-material/topics/epigenetics/" },
+      { text: "Metagenomics", weight: 80, url: "https://training.galaxyproject.org/training-material/topics/metagenomics/" }
     ];
 
     /* ========================================
@@ -1054,23 +1040,24 @@
       const colors = ['#fe7f02', '#2077b3', '#74c376', '#ffd602', '#e31a1e', '#a3cbdf', '#fdbf6f', '#9fd99a', '#fb9998'];
 
       // Place words in a spiral pattern
-      const placedWords = [];
-
       WORDCLOUD_TOPICS.forEach((topic, index) => {
-        const word = document.createElement('span');
+        const word = document.createElement('a');
         word.className = 'wordcloud-word';
         word.textContent = topic.text;
+        word.href = topic.url;
+        word.target = '_blank';
+        word.rel = 'noopener noreferrer';
 
-        // Size based on weight
-        const fontSize = 14 + (topic.weight / 100) * 32;
+        // Size based on weight - increased by 50%
+        const fontSize = 21 + (topic.weight / 100) * 48;
         word.style.fontSize = `${fontSize}px`;
         word.style.color = colors[index % colors.length];
 
-        // Spiral placement
+        // Spiral placement with more spacing
         const angle = index * 0.7;
-        const radius = 30 + index * 18;
-        const x = centerX + Math.cos(angle) * radius - 50;
-        const y = centerY + Math.sin(angle) * radius - 15;
+        const radius = 40 + index * 22;
+        const x = centerX + Math.cos(angle) * radius - 60;
+        const y = centerY + Math.sin(angle) * radius - 20;
 
         word.style.left = `${x}px`;
         word.style.top = `${y}px`;
@@ -1225,6 +1212,11 @@
         this.goToSlide(prevIndex);
       }
 
+      getCurrentDuration() {
+        const slide = this.slides[this.currentIndex];
+        return parseInt(slide.dataset.duration) || CONFIG.interval;
+      }
+
       togglePlayPause() {
         if (this.isPlaying) {
           this.pause();
@@ -1257,8 +1249,9 @@
         this.progress = 0;
         this.progressBar.style.width = '0%';
 
+        const duration = this.getCurrentDuration();
         this.progressInterval = setInterval(() => {
-          this.progress += 100 / (CONFIG.interval / 100);
+          this.progress += 100 / (duration / 100);
           this.progressBar.style.width = `${this.progress}%`;
 
           if (this.progress >= 100) {
