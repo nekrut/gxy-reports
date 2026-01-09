@@ -13,6 +13,57 @@ python -m http.server 8000
 # Then visit http://localhost:8000/promo-site/
 ```
 
+## Editing Slides
+
+Slide content is defined in `slides.md` and compiled to `index.html` via a build script.
+
+```bash
+# Install dependencies (first time only)
+npm install
+
+# Rebuild after editing slides.md
+npm run build
+```
+
+### Markdown Format
+
+```markdown
+---
+title: Galaxy Promo Site
+masthead:
+  - name: 1-2-3
+    section: intro
+---
+
+# [section] Slide Title
+> Subtitle text
+
+Content here...
+
+---
+
+# [section] Next Slide
+...
+```
+
+### Supported Slide Types
+
+| Type | Directive | Description |
+|------|-----------|-------------|
+| Stats | `\| Stat \| Label \|` table | Grid of stat cards with colors |
+| Intro | Default (with image) | Title, subtitle, centered image |
+| Split | `> split` or `> split: reverse` | Two-column: text + image |
+| Wordcloud | `> type: wordcloud` | Sparkly topic grid |
+| Ecosystem | `> type: ecosystem` | Panel grid with logos |
+| Galaxies | `> type: galaxies` | Global instances slide |
+
+### Special Syntax
+
+- `# [section] Title` - Section tag for masthead navigation
+- `::: highlight ... :::` - Yellow-bordered highlight box
+- `![alt](path)` - Images
+- `**bold**` - Bold text in paragraphs
+
 ## Features
 
 - **12 slides** across 4 sections: 1-2-3, Global Use, Capabilities, Ecosystem
@@ -74,7 +125,11 @@ You can also click:
 
 ```
 promo-site/
-├── index.html          # Main site (single-file, self-contained)
+├── index.html          # Generated output (do not edit directly)
+├── slides.md           # Slide content source (edit this!)
+├── build.js            # Build script (markdown → HTML)
+├── template.html       # HTML template with CSS/JS
+├── package.json        # npm dependencies
 ├── favicon.svg         # Galaxy logo (browser favicon)
 ├── README.md           # This file
 ├── images/             # All slide images
