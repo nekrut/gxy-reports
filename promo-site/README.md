@@ -38,18 +38,22 @@ You can also click:
 
 ## Slide Overview
 
-### 1-2-3 (Slides 1-4)
+### Hero (Slide 1)
 | Slide | Title | Content |
 |-------|-------|---------|
-| 1 | Get your data! | Upload from computer, web, SRA, anywhere |
-| 2 | Run a tool! | Select from 1,000s of tools |
-| 3 | Run a workflow! | Select from 100s of community curated workflows |
-| 4 | Interpret! | Use integrated Jupyter, RStudio, or AI tools |
+| 1 | Galaxy is free, powerful, scales! | Key stats: 750K jobs/mo, 400K users, $2M compute |
 
-### Global Use (Slides 5-8)
+### 1-2-3 (Slides 2-5)
 | Slide | Title | Content |
 |-------|-------|---------|
-| 5 | Galaxy in Numbers | Key stats: 750K jobs/mo, 400K users, $2M compute |
+| 2 | Get your data! | Upload from computer, web, SRA, anywhere |
+| 3 | Run a tool! | Select from 1,000s of tools |
+| 4 | Run a workflow! | Select from 100s of community curated workflows |
+| 5 | Interpret! | Use integrated Jupyter, RStudio, or AI tools |
+
+### Global Use (Slides 6-8)
+| Slide | Title | Content |
+|-------|-------|---------|
 | 6 | Highly Scalable | ACCESS-CI infrastructure map |
 | 7 | Tool Ecosystem | BioConda, BioContainers, Galaxy wrappers |
 | 8 | Training Hub | GTN stats, GTA 2025 world map |
