@@ -75,26 +75,26 @@ You can also click:
 ```
 promo-site/
 ├── index.html          # Main site (single-file, self-contained)
-├── favicon.svg         # Galaxy logo (from usegalaxy.org)
-├── tree.png            # VGP phylogenetic tree
-├── upload.png          # Get your data slide image
-├── run-tool.png        # Run a tool slide image
-├── run-wf.png          # Run a workflow slide image
-├── interpret.png       # Interpret slide image
-├── access-map.svg      # ACCESS-CI infrastructure map
-├── map_number.svg      # GTA 2025 world map
-├── galaxies.svg        # Global instances background
-├── images/
-│   ├── image5.png      # Citations by journal
-│   ├── iuc-logo.png    # IUC logo
-│   ├── iwc-logo.png    # IWC logo
+├── favicon.svg         # Galaxy logo (browser favicon)
+├── README.md           # This file
+├── images/             # All slide images
+│   ├── upload.png          # 1-2-3: Get your data
+│   ├── run-tool.png        # 1-2-3: Run a tool
+│   ├── run-wf.png          # 1-2-3: Run a workflow
+│   ├── interpret.png       # 1-2-3: Interpret
+│   ├── access-map.svg      # ACCESS-CI infrastructure map
+│   ├── map_number.svg      # GTA 2025 world map
+│   ├── galaxies.svg        # Global instances background
+│   ├── tree.png            # VGP phylogenetic tree
+│   ├── iuc-logo.png        # Ecosystem logos
+│   ├── iwc-logo.png
 │   ├── biocontainers-logo.png
 │   ├── planemo-logo.png
 │   ├── pulsar-logo.png
 │   └── tpv-logo.png
-├── gxy_colors.pdf      # Galaxy color palette reference
-├── vgp.md              # VGP content source
-└── README.md           # This file
+└── docs/               # Reference materials
+    ├── vgp.md              # VGP content source
+    └── gxy_colors.pdf      # Galaxy color palette
 ```
 
 ## Configuration
