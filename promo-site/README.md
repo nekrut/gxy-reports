@@ -1,6 +1,6 @@
 # Galaxy Promo Site
 
-A promotional slideshow website for Galaxy Project conference booth displays. Features 8 auto-playing slides showcasing Galaxy's global impact, capabilities, and ecosystem.
+A promotional slideshow website for Galaxy Project conference booth displays. Features 12 auto-playing slides showcasing Galaxy's workflow, global impact, capabilities, and ecosystem.
 
 ## Quick Start
 
@@ -15,7 +15,7 @@ python -m http.server 8000
 
 ## Features
 
-- **8 slides** across 3 sections: Global Use, Capabilities, Ecosystem
+- **12 slides** across 4 sections: 1-2-3, Global Use, Capabilities, Ecosystem
 - **Auto-play** with configurable per-slide durations and progress bar
 - **Keyboard controls**: Space (pause/play), Arrow keys (navigate), Escape (resume)
 - **Click navigation**: Dots, masthead links
@@ -38,25 +38,33 @@ You can also click:
 
 ## Slide Overview
 
-### Global Use (Slides 1-4)
+### 1-2-3 (Slides 1-4)
 | Slide | Title | Content |
 |-------|-------|---------|
-| 1 | Galaxy in Numbers | Key stats: 750K jobs/mo, 400K users, $2M compute |
-| 2 | Highly Scalable | ACCESS-CI infrastructure map |
-| 3 | Tool Ecosystem | BioConda, BioContainers, Galaxy wrappers |
-| 4 | Training Hub | GTN stats, GTA 2025 world map |
+| 1 | Get your data! | Upload from computer, web, SRA, anywhere |
+| 2 | Run a tool! | Select from 1,000s of tools |
+| 3 | Run a workflow! | Select from 100s of community curated workflows |
+| 4 | Interpret! | Use integrated Jupyter, RStudio, or AI tools |
 
-### Capabilities (Slides 5-6)
+### Global Use (Slides 5-8)
 | Slide | Title | Content |
 |-------|-------|---------|
-| 5 | Universe of Applications | Sparkly grid of GTN topics |
-| 6 | Scalable Genome Assembly | VGP project, phylogenetic tree |
+| 5 | Galaxy in Numbers | Key stats: 750K jobs/mo, 400K users, $2M compute |
+| 6 | Highly Scalable | ACCESS-CI infrastructure map |
+| 7 | Tool Ecosystem | BioConda, BioContainers, Galaxy wrappers |
+| 8 | Training Hub | GTN stats, GTA 2025 world map |
 
-### Ecosystem (Slides 7-8)
+### Capabilities (Slides 9-10)
 | Slide | Title | Content |
 |-------|-------|---------|
-| 7 | Global Instances | usegalaxy.org, .eu, .org.au (galaxies.svg background) |
-| 8 | Galaxy Ecosystem | 6-panel grid: IUC, IWC, BioContainers, Planemo, Pulsar, TPV |
+| 9 | Universe of Applications | Sparkly grid of GTN topics |
+| 10 | Scalable Genome Assembly | VGP project, phylogenetic tree |
+
+### Ecosystem (Slides 11-12)
+| Slide | Title | Content |
+|-------|-------|---------|
+| 11 | Global Instances | usegalaxy.org, .eu, .org.au (galaxies.svg background) |
+| 12 | Galaxy Ecosystem | 6-panel grid: IUC, IWC, BioContainers, Planemo, Pulsar, TPV |
 
 ## File Structure
 
@@ -65,6 +73,10 @@ promo-site/
 ├── index.html          # Main site (single-file, self-contained)
 ├── favicon.svg         # Galaxy logo (from usegalaxy.org)
 ├── tree.png            # VGP phylogenetic tree
+├── upload.png          # Get your data slide image
+├── run-tool.png        # Run a tool slide image
+├── run-wf.png          # Run a workflow slide image
+├── interpret.png       # Interpret slide image
 ├── access-map.svg      # ACCESS-CI infrastructure map
 ├── map_number.svg      # GTA 2025 world map
 ├── galaxies.svg        # Global instances background

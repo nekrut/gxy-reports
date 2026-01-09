@@ -166,6 +166,35 @@
        Slide Layouts
        ======================================== */
 
+    /* Intro Slides Layout */
+    .slide-intro {
+      flex-direction: column;
+      text-align: center;
+      background: var(--color-bg-subtle);
+    }
+
+    .slide-intro .slide-title {
+      font-size: 56px;
+      font-weight: 600;
+      letter-spacing: -2px;
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-text-dark);
+    }
+
+    .slide-intro .slide-subtitle {
+      font-size: 24px;
+      font-weight: 400;
+      color: #86868b;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .slide-intro .slide-image {
+      max-width: 85%;
+      max-height: 55vh;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+
     /* Stats Layout */
     .slide-stats {
       flex-direction: column;
@@ -684,7 +713,8 @@
       <img src="favicon.svg" alt="Galaxy">
     </div>
     <div class="masthead-nav">
-      <a class="masthead-link active" data-section="global">Global Use</a>
+      <a class="masthead-link active" data-section="intro">1-2-3</a>
+      <a class="masthead-link" data-section="global">Global Use</a>
       <a class="masthead-link" data-section="capabilities">Capabilities</a>
       <a class="masthead-link" data-section="ecosystem">Ecosystem</a>
     </div>
@@ -693,10 +723,40 @@
   <!-- Slides -->
   <div class="slides-container">
 
+    <!-- ==================== 1-2-3 INTRO SECTION ==================== -->
+
+    <!-- Slide 1: Get your data -->
+    <section class="slide slide-intro active" data-section="intro">
+      <h1 class="slide-title">Get your data!</h1>
+      <p class="slide-subtitle">From computer, web, SRA, anywhere</p>
+      <img class="slide-image" src="upload.png" alt="Upload data to Galaxy">
+    </section>
+
+    <!-- Slide 2: Run a tool -->
+    <section class="slide slide-intro" data-section="intro">
+      <h1 class="slide-title">Run a tool!</h1>
+      <p class="slide-subtitle">Select from 1,000s of tools</p>
+      <img class="slide-image" src="run-tool.png" alt="Run a tool in Galaxy">
+    </section>
+
+    <!-- Slide 3: Run a workflow -->
+    <section class="slide slide-intro" data-section="intro">
+      <h1 class="slide-title">Run a workflow!</h1>
+      <p class="slide-subtitle">Select from 100s of community curated workflows</p>
+      <img class="slide-image" src="run-wf.png" alt="Run a workflow in Galaxy">
+    </section>
+
+    <!-- Slide 4: Interpret -->
+    <section class="slide slide-intro" data-section="intro">
+      <h1 class="slide-title">Interpret!</h1>
+      <p class="slide-subtitle">Use integrated Jupyter or RStudio and soon new AI agentic tools</p>
+      <img class="slide-image" src="interpret.png" alt="Interpret results in Galaxy">
+    </section>
+
     <!-- ==================== GLOBAL USE SECTION ==================== -->
 
-    <!-- Slide 1: Galaxy in Numbers -->
-    <section class="slide slide-stats active" data-section="global">
+    <!-- Slide 5: Galaxy in Numbers -->
+    <section class="slide slide-stats" data-section="global">
       <h1 class="slide-title">Galaxy in Numbers</h1>
       <p class="slide-subtitle">Serving biological researchers worldwide since 2005</p>
       <div class="stats-grid">
@@ -727,7 +787,7 @@
       </div>
     </section>
 
-    <!-- Slide 2: Highly Scalable -->
+    <!-- Slide 6: Highly Scalable -->
     <section class="slide" data-section="global">
       <div class="slide-split">
         <div class="content-side">
@@ -751,7 +811,7 @@
       </div>
     </section>
 
-    <!-- Slide 3: Tool Ecosystem -->
+    <!-- Slide 7: Tool Ecosystem -->
     <section class="slide slide-stats" data-section="global">
       <h1 class="slide-title">Galaxy is a Tool Ecosystem</h1>
       <p class="slide-subtitle">Galaxy serves thousands of open source analysis tools and is tightly integrated with BioConda and BioContainer communities</p>
@@ -775,7 +835,7 @@
       </div>
     </section>
 
-    <!-- Slide 4: Training Hub -->
+    <!-- Slide 8: Training Hub -->
     <section class="slide" data-section="global">
       <div class="slide-split reverse">
         <div class="content-side">
@@ -801,13 +861,13 @@
 
     <!-- ==================== CAPABILITIES SECTION ==================== -->
 
-    <!-- Slide 5: Universe of Applications -->
+    <!-- Slide 9: Universe of Applications -->
     <section class="slide slide-wordcloud" data-section="capabilities">
       <h1 class="slide-title">A Universe of Applications</h1>
       <div id="wordcloud-container"></div>
     </section>
 
-    <!-- Slide 6: VGP -->
+    <!-- Slide 10: VGP -->
     <section class="slide" data-section="capabilities">
       <div class="slide-split">
         <div class="content-side">
@@ -833,7 +893,7 @@
 
     <!-- ==================== ECOSYSTEM SECTION ==================== -->
 
-    <!-- Slide 7: Global Instances -->
+    <!-- Slide 11: Global Instances -->
     <section class="slide slide-galaxies" data-section="ecosystem">
       <h1 class="slide-title">Global Galaxy Instances</h1>
       <p class="slide-subtitle">The usegalaxy.* consortium provides free, public Galaxy servers across three continents</p>
@@ -845,7 +905,7 @@
       </div>
     </section>
 
-    <!-- Slide 8: Galaxy Ecosystem -->
+    <!-- Slide 12: Galaxy Ecosystem -->
     <section class="slide slide-ecosystem" data-section="ecosystem">
       <h1 class="slide-title">Galaxy Ecosystem</h1>
       <p class="slide-subtitle">Tools and services powering the Galaxy platform</p>
