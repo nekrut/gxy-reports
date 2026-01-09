@@ -17,6 +17,8 @@ const SLIDE_TYPES = {
   wordcloud: /^>\s*type:\s*wordcloud/m,
   ecosystem: /^>\s*type:\s*ecosystem/m,
   galaxies: /^>\s*type:\s*galaxies/m,
+  links: /^>\s*type:\s*links/m,
+  qr: /^>\s*type:\s*qr/m,
   intro: null  // Default for simple image slides
 };
 
@@ -117,6 +119,20 @@ function parseSlide(content, index) {
     // Get description paragraphs
     const paragraphs = content.match(/^(?!>|#|\||!\[)[^\n]+$/gm);
     slide.paragraphs = paragraphs?.filter(p => p.trim()) || [];
+  } else if (SLIDE_TYPES.links.test(content)) {
+    slide.type = 'links';
+    // Parse links: - Label: URL format
+    const linkMatches = content.matchAll(/^-\s*([^:]+):\s*(https?:\/\/[^\s]+)/gm);
+    for (const match of linkMatches) {
+      slide.items.push({ label: match[1].trim(), url: match[2].trim() });
+    }
+  } else if (SLIDE_TYPES.qr.test(content)) {
+    slide.type = 'qr';
+    // Parse QR code image
+    const imgMatch = content.match(/!\[([^\]]*)\]\(([^)]+)\)/);
+    if (imgMatch) {
+      slide.image = { alt: imgMatch[1], src: imgMatch[2] };
+    }
   } else {
     // Default: intro slide with image
     slide.type = 'intro';
@@ -147,6 +163,10 @@ function generateSlideHTML(slide) {
       return generateEcosystemSlide(slide, activeClass);
     case 'galaxies':
       return generateGalaxiesSlide(slide, activeClass);
+    case 'links':
+      return generateLinksSlide(slide, activeClass);
+    case 'qr':
+      return generateQrSlide(slide, activeClass);
     default:
       return generateIntroSlide(slide, activeClass);
   }
@@ -251,6 +271,37 @@ function generateGalaxiesSlide(slide, activeClass) {
       <div class="galaxies-description">
         ${descHTML}
       </div>
+    </section>`;
+}
+
+function generateLinksSlide(slide, activeClass) {
+  const linksHTML = slide.items.map(item => `
+        <a class="link-card" href="${item.url}" target="_blank">
+          <span class="link-label">${item.label}</span>
+          <span class="link-url">${item.url.replace('https://', '')}</span>
+        </a>`).join('');
+  const subtitleHTML = slide.subtitle ? `<p class="slide-subtitle">${slide.subtitle}</p>` : '';
+
+  return `
+    <!-- Slide ${slide.index + 1}: ${slide.title} -->
+    <section class="slide slide-links${activeClass}" data-section="${slide.section}">
+      <h1 class="slide-title">${slide.title}</h1>
+      ${subtitleHTML}
+      <div class="links-grid">
+${linksHTML}
+      </div>
+    </section>`;
+}
+
+function generateQrSlide(slide, activeClass) {
+  const imgHTML = slide.image ?
+    `<img class="qr-code" src="${slide.image.src}" alt="${slide.image.alt}">` : '';
+
+  return `
+    <!-- Slide ${slide.index + 1}: ${slide.title} -->
+    <section class="slide slide-qr${activeClass}" data-section="${slide.section}">
+      <h1 class="slide-title">${slide.title}</h1>
+      ${imgHTML}
     </section>`;
 }
 

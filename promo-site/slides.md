@@ -182,3 +182,25 @@ Distributed job execution engine: Run Galaxy jobs on any computational resource 
 ## TPV
 ![TPV](images/tpv-logo.png)
 Dynamic job routing system that knows where each tools needs to be run
+
+---
+
+# [ecosystem] galaxyproject.org
+> type: links
+> Key links
+
+- US: https://usegalaxy.org
+- VGP: https://vgp.usegalaxy.org
+- EU: https://usegalaxy.eu
+- AU: https://usegalaxy.org.au
+- Hub: https://galaxyproject.org
+- Training: https://training.galaxyproject.org
+- IWC: https://iwc.galaxyproject.org
+- GitHub: https://github.com/galaxyproject
+
+---
+
+# [ecosystem] gxy.io/what-is-galaxy
+> type: qr
+
+![QR Code](images/qr-what-is-galaxy.svg)

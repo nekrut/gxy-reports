@@ -593,6 +593,103 @@
     }
 
     /* ========================================
+       Links Slide
+       ======================================== */
+
+    .slide-links {
+      background: var(--color-bg-light);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-links .slide-title {
+      font-size: 56px;
+      font-weight: 600;
+      letter-spacing: -2px;
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-primary);
+    }
+
+    .slide-links .slide-subtitle {
+      font-size: 24px;
+      color: #666;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--spacing-md);
+      max-width: 1200px;
+      width: 90%;
+    }
+
+    .link-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-lg) var(--spacing-md);
+      background: var(--color-bg-subtle);
+      border-radius: 16px;
+      text-decoration: none;
+      transition: var(--transition-fast);
+      border: 2px solid transparent;
+    }
+
+    .link-card:hover {
+      background: var(--color-primary);
+      border-color: var(--color-accent);
+    }
+
+    .link-card:hover .link-label,
+    .link-card:hover .link-url {
+      color: var(--color-text-light);
+    }
+
+    .link-label {
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 8px;
+    }
+
+    .link-url {
+      font-size: 18px;
+      color: var(--color-blue);
+      word-break: break-all;
+      text-align: center;
+    }
+
+    /* ========================================
+       QR Code Slide
+       ======================================== */
+
+    .slide-qr {
+      background: var(--color-bg-light);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .slide-qr .slide-title {
+      font-size: 64px;
+      font-weight: 600;
+      letter-spacing: -2px;
+      margin-bottom: var(--spacing-lg);
+      color: var(--color-primary);
+    }
+
+    .slide-qr .qr-code {
+      width: 400px;
+      height: 400px;
+      max-width: 50vh;
+      max-height: 50vh;
+    }
+
+    /* ========================================
        Progress Bar
        ======================================== */
 

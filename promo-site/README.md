@@ -56,6 +56,8 @@ Content here...
 | Wordcloud | `> type: wordcloud` | Sparkly topic grid |
 | Ecosystem | `> type: ecosystem` | Panel grid with logos |
 | Galaxies | `> type: galaxies` | Global instances slide |
+| Links | `> type: links` | Grid of clickable link cards |
+| QR | `> type: qr` | Large centered QR code |
 
 ### Special Syntax
 
@@ -66,7 +68,7 @@ Content here...
 
 ## Features
 
-- **12 slides** across 4 sections: 1-2-3, Global Use, Capabilities, Ecosystem
+- **14 slides** across 4 sections: 1-2-3, Global Use, Capabilities, Ecosystem
 - **Auto-play** with configurable per-slide durations and progress bar
 - **Keyboard controls**: Space (pause/play), Arrow keys (navigate), Escape (resume)
 - **Click navigation**: Dots, masthead links
@@ -115,11 +117,13 @@ You can also click:
 | 9 | Universe of Applications | Sparkly grid of GTN topics |
 | 10 | Scalable Genome Assembly | VGP project, phylogenetic tree |
 
-### Ecosystem (Slides 11-12)
+### Ecosystem (Slides 11-14)
 | Slide | Title | Content |
 |-------|-------|---------|
 | 11 | Global Instances | usegalaxy.org, .eu, .org.au (galaxies.svg background) |
 | 12 | Galaxy Ecosystem | 6-panel grid: IUC, IWC, BioContainers, Planemo, Pulsar, TPV |
+| 13 | galaxyproject.org | Key links grid (US, EU, AU, VGP, Hub, Training, IWC, GitHub) |
+| 14 | gxy.io/what-is-galaxy | QR code for sharing |
 
 ## File Structure
 
