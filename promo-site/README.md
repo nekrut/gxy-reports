@@ -94,8 +94,6 @@ promo-site/
 │   └── tpv-logo.png
 ├── gxy_colors.pdf      # Galaxy color palette reference
 ├── vgp.md              # VGP content source
-├── GOAL-PLAN.md        # Original requirements
-├── CLAUDE-PLAN.md      # Implementation plan
 └── README.md           # This file
 ```
 
